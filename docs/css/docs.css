@@ -1,0 +1,62 @@
+h1 {
+    margin-top: 150px;
+}
+
+h2 {
+    margin-top: 100px;
+}
+
+h3 {
+    margin-top: 60px;
+}
+
+h4 {
+    margin-top: 40px;
+}
+
+h5 {
+    margin-top: 30px;
+}
+
+h6 {
+    margin-top: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    scroll-margin-top: 100px;
+}
+
+.spacer-200 {
+    height: 200px;
+}
+p {
+    text-align: justify;
+}
+
+.highlighter-rouge .highlight {
+    background-color: rgb(242, 244, 245);
+    border-radius: 10px;
+    padding: 2px 5px;
+}
+.highlighter-rouge {
+    margin-bottom: 15px;
+}
+code:not(pre.highlight code) {
+    background-color: rgb(242, 244, 245);
+    border-radius: 5px;
+    padding: 2px 5px;
+    color: rgb(33,37,41);
+}
+
+#markdown-toc a, #markdown-toc a:hover, #markdown-toc a:visited {
+    color: rgb(33,37,41);
+    text-decoration: none;
+}
+#markdown-toc a:not(nav a)::after {
+    content: none;
+}
+
+img:not(nav img) {
+    max-width: 100%;
+    border-radius: 10px;
+}

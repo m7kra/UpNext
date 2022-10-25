@@ -1,0 +1,151 @@
+I"�(<h1 class="no_toc" id="controller">Controller</h1>
+
+<h2 class="no_toc" id="table-of-contents">Table of Contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#controller-1" id="markdown-toc-controller-1">Controller</a>    <ul>
+      <li><a href="#constructor" id="markdown-toc-constructor">Constructor</a></li>
+      <li><a href="#methods" id="markdown-toc-methods">Methods</a>        <ul>
+          <li><a href="#changeview" id="markdown-toc-changeview"><code class="language-plaintext highlighter-rouge">changeView</code></a></li>
+          <li><a href="#getlibrary" id="markdown-toc-getlibrary"><code class="language-plaintext highlighter-rouge">getLibrary</code></a></li>
+          <li><a href="#savesettings" id="markdown-toc-savesettings"><code class="language-plaintext highlighter-rouge">saveSettings</code></a></li>
+          <li><a href="#implementsettings" id="markdown-toc-implementsettings"><code class="language-plaintext highlighter-rouge">implementSettings</code></a></li>
+          <li><a href="#resetsettings" id="markdown-toc-resetsettings"><code class="language-plaintext highlighter-rouge">resetSettings</code></a></li>
+          <li><a href="#open" id="markdown-toc-open"><code class="language-plaintext highlighter-rouge">open</code></a></li>
+          <li><a href="#addcover" id="markdown-toc-addcover"><code class="language-plaintext highlighter-rouge">addCover</code></a></li>
+          <li><a href="#deletealbum" id="markdown-toc-deletealbum"><code class="language-plaintext highlighter-rouge">deleteAlbum</code></a></li>
+          <li><a href="#updatealbuminfo" id="markdown-toc-updatealbuminfo"><code class="language-plaintext highlighter-rouge">updateAlbumInfo</code></a></li>
+          <li><a href="#updatetrackinfo" id="markdown-toc-updatetrackinfo"><code class="language-plaintext highlighter-rouge">updateTrackInfo</code></a></li>
+          <li><a href="#windowbutton" id="markdown-toc-windowbutton"><code class="language-plaintext highlighter-rouge">windowButton</code></a></li>
+          <li><a href="#resetlibrary" id="markdown-toc-resetlibrary"><code class="language-plaintext highlighter-rouge">resetLibrary</code></a></li>
+          <li><a href="#log" id="markdown-toc-log"><code class="language-plaintext highlighter-rouge">log</code></a></li>
+        </ul>
+      </li>
+      <li><a href="#event-listeners" id="markdown-toc-event-listeners">Event listeners</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="controller-1">Controller</h2>
+
+<p>Class that manages the app.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Controller</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">setView</span><span class="p">,</span> <span class="nx">setSettings</span><span class="p">,</span> <span class="nx">setLoading</span><span class="p">,</span> <span class="nx">addLog</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="methods">Methods</h3>
+
+<h4 id="changeview"><code class="language-plaintext highlighter-rouge">changeView</code></h4>
+
+<p><strong>Description:</strong> Sets the app view to <code class="language-plaintext highlighter-rouge">view</code>.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">view</code>,<code class="language-plaintext highlighter-rouge">[albumID]</code></p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="getlibrary"><code class="language-plaintext highlighter-rouge">getLibrary</code></h4>
+
+<p><strong>Description:</strong> Gets the library according to <code class="language-plaintext highlighter-rouge">searchParameters</code> and updates the <code class="language-plaintext highlighter-rouge">Library</code> component.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">searchParameters</code></p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="savesettings"><code class="language-plaintext highlighter-rouge">saveSettings</code></h4>
+
+<p><strong>Description:</strong> Sets the provided settings and makes the necessary changes to the app. <code class="language-plaintext highlighter-rouge">firstTime</code> should always be saved as false.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">settings</code></p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="implementsettings"><code class="language-plaintext highlighter-rouge">implementSettings</code></h4>
+
+<p><strong>Description:</strong> Adapts the app to the current <code class="language-plaintext highlighter-rouge">settings</code>.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">settings</code></p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="resetsettings"><code class="language-plaintext highlighter-rouge">resetSettings</code></h4>
+
+<p><strong>Description:</strong> Restores settings to their original value.</p>
+
+<p><strong>Arguments:</strong> None</p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="open"><code class="language-plaintext highlighter-rouge">open</code></h4>
+
+<p><strong>Description:</strong> Calls the main process’s <code class="language-plaintext highlighter-rouge">open</code> handler and refreshes the library after it.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">type = folder</code> (<code class="language-plaintext highlighter-rouge">folder</code> or <code class="language-plaintext highlighter-rouge">file</code>)</p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="addcover"><code class="language-plaintext highlighter-rouge">addCover</code></h4>
+
+<p><strong>Description:</strong> Calls the main process’s <code class="language-plaintext highlighter-rouge">addCover</code> handler and refreshes the component that called it according to <code class="language-plaintext highlighter-rouge">caller</code>.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">albumID</code>, <code class="language-plaintext highlighter-rouge">caller</code> (<code class="language-plaintext highlighter-rouge">albumDetails</code> or <code class="language-plaintext highlighter-rouge">library</code>)</p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="deletealbum"><code class="language-plaintext highlighter-rouge">deleteAlbum</code></h4>
+
+<p><strong>Description:</strong> Calls the main process’s <code class="language-plaintext highlighter-rouge">deleteAlbum</code> handler and refreshes the library after it.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">albumID</code></p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="updatealbuminfo"><code class="language-plaintext highlighter-rouge">updateAlbumInfo</code></h4>
+
+<p><strong>Description:</strong> Calls the main process’s <code class="language-plaintext highlighter-rouge">updateAlbumInfo</code> handler and refreshes the <code class="language-plaintext highlighter-rouge">AlbumDetails</code> component.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">albumID</code>, <code class="language-plaintext highlighter-rouge">albumInfo</code></p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="updatetrackinfo"><code class="language-plaintext highlighter-rouge">updateTrackInfo</code></h4>
+
+<p><strong>Description:</strong> Calls the main process’s <code class="language-plaintext highlighter-rouge">updateTrackInfo</code> handler and refreshes the <code class="language-plaintext highlighter-rouge">AlbumDetails</code> component.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">albumID</code>, <code class="language-plaintext highlighter-rouge">trackID</code>, <code class="language-plaintext highlighter-rouge">trackInfo</code></p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="windowbutton"><code class="language-plaintext highlighter-rouge">windowButton</code></h4>
+
+<p><strong>Description:</strong> Calls the main process’s <code class="language-plaintext highlighter-rouge">windowButton</code> handler.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">button</code></p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="resetlibrary"><code class="language-plaintext highlighter-rouge">resetLibrary</code></h4>
+
+<p><strong>Description:</strong> Deletes the database.</p>
+
+<p><strong>Arguments:</strong> None</p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="log"><code class="language-plaintext highlighter-rouge">log</code></h4>
+
+<p><strong>Description:</strong> Logs the <code class="language-plaintext highlighter-rouge">message</code> using the <code class="language-plaintext highlighter-rouge">Logger</code> component.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">message</code></p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h3 id="event-listeners">Event listeners</h3>
+
+<p><code class="language-plaintext highlighter-rouge">StateManager</code> should set up event listeners for <code class="language-plaintext highlighter-rouge">changeView</code>, <code class="language-plaintext highlighter-rouge">getLibrary</code>, <code class="language-plaintext highlighter-rouge">saveSettings</code>, <code class="language-plaintext highlighter-rouge">resetSettings</code>, <code class="language-plaintext highlighter-rouge">open</code>, <code class="language-plaintext highlighter-rouge">addCover</code>, <code class="language-plaintext highlighter-rouge">deleteAlbum</code>, <code class="language-plaintext highlighter-rouge">updateAlbumInfo</code>, <code class="language-plaintext highlighter-rouge">updateTrackInfo</code>, <code class="language-plaintext highlighter-rouge">windowButton</code>, <code class="language-plaintext highlighter-rouge">resetLibrary</code>, <code class="language-plaintext highlighter-rouge">resetSettings</code> and <code class="language-plaintext highlighter-rouge">log</code>. In addition, <code class="language-plaintext highlighter-rouge">log</code> should also be listened on <code class="language-plaintext highlighter-rouge">ipcRenderer</code>.</p>
+:ET

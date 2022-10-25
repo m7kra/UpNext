@@ -1,0 +1,27 @@
+.header {
+    padding: 5px;
+    height: 8vh;
+    -webkit-app-region: drag;
+}
+/* Button on header bar are not used to drag the window */
+.header > * > * {
+    -webkit-app-region: no-drag;
+}
+
+#control-button-container {
+    margin: 10px;
+    height: 60px;
+    width: 60px;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    white-space: nowrap;
+    background-color: rgba(0,0,0,0.2);
+}
+/* --container-width is set on the script */
+#control-button-container:hover {
+    width: var(--container-width);
+}

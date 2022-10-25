@@ -1,0 +1,168 @@
+<html>
+
+    <head>
+        <title>Musicly - Settings</title>
+        <meta name="description" content="Musicly - Settings. Musicly is a simple and elegant open-source music player.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <link rel="stylesheet" href="/Musicly/css/styles.css">
+        <link rel="icon" href="/Musicly/assets/logo.png">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg bg-light fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex" href="/Musicly/">
+                    <img src="/Musicly/assets/logo.png" alt="" width="32px" height="32px" class="d-inline-block">
+                    Musicly
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/m7kra/Musicly/releases">Download</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Musicly/docs/">Documentation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://m7kra.github.io/">M7kra</a>
+                        </li>
+                        <div class="d-flex w-100"></div>
+                        <li class="nav-item">
+                            <a class="navbar-brand d-flex align-items-center" href="https://github.com/m7kra/Musicly">
+                                <img src="/Musicly/assets/github.png" alt="" width="30px" height="30px" class="d-inline-block"
+                                    style="opacity: 0.55;">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <link rel="stylesheet" href="/Musicly/css/syntax-highlight.css"/>
+<link rel="stylesheet" href="/Musicly/css/docs.css"/>
+<div class="container-sm">
+    <div class="row d-flex justify-content-center">
+        <div id="content" class="col-xl-8 col-lg-9 col-sm-10 col-12">
+            <h1 class="no_toc" id="settings">Settings</h1>
+
+<h2 class="no_toc" id="table-of-contents">Table of contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#the-settings-class" id="markdown-toc-the-settings-class">The Settings class</a>    <ul>
+      <li><a href="#methods" id="markdown-toc-methods">Methods</a>        <ul>
+          <li><a href="#get" id="markdown-toc-get"><code class="language-plaintext highlighter-rouge">get</code></a></li>
+          <li><a href="#set" id="markdown-toc-set"><code class="language-plaintext highlighter-rouge">set</code></a></li>
+          <li><a href="#reset" id="markdown-toc-reset"><code class="language-plaintext highlighter-rouge">reset</code></a></li>
+          <li><a href="#getcustomcss" id="markdown-toc-getcustomcss"><code class="language-plaintext highlighter-rouge">getCustomCSS</code></a></li>
+          <li><a href="#setcustomcss" id="markdown-toc-setcustomcss"><code class="language-plaintext highlighter-rouge">setCustomCSS</code></a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#structure" id="markdown-toc-structure">Structure</a></li>
+  <li><a href="#paths" id="markdown-toc-paths">Paths</a></li>
+</ul>
+
+<h2 id="the-settings-class">The Settings class</h2>
+
+<p>Class that manages app settings.</p>
+
+<h3 id="methods">Methods</h3>
+
+<h4 id="get"><code class="language-plaintext highlighter-rouge">get</code></h4>
+
+<p><strong>Description:</strong> Gets app settings. If none are defined, returns default settings.</p>
+
+<p><strong>Arguments:</strong> None</p>
+
+<p><strong>Return value:</strong> <code class="language-plaintext highlighter-rouge">settings</code></p>
+
+<h4 id="set"><code class="language-plaintext highlighter-rouge">set</code></h4>
+
+<p><strong>Description:</strong> Store the provided <code class="language-plaintext highlighter-rouge">settings</code>.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">settings</code></p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="reset"><code class="language-plaintext highlighter-rouge">reset</code></h4>
+
+<p><strong>Description:</strong> Stores the predefined settings.</p>
+
+<p><strong>Arguments:</strong> None</p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h4 id="getcustomcss"><code class="language-plaintext highlighter-rouge">getCustomCSS</code></h4>
+
+<p><strong>Description:</strong> Auxiliary method that gets the user-defined CSS, returning <code class="language-plaintext highlighter-rouge">''</code> if there is no corresponding file.</p>
+
+<p><strong>Arguments:</strong> None</p>
+
+<p><strong>Return value:</strong> <code class="language-plaintext highlighter-rouge">customCSS</code></p>
+
+<h4 id="setcustomcss"><code class="language-plaintext highlighter-rouge">setCustomCSS</code></h4>
+
+<p><strong>Description:</strong> Auxiliary method that saves the user-defined CSS.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">customCSS</code></p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h2 id="structure">Structure</h2>
+
+<p>The settings are stored in an object containing <code class="language-plaintext highlighter-rouge">subSettings</code>. These, in turn, have a property <code class="language-plaintext highlighter-rouge">type</code> which determines what the other properties are and what should be displayed in the <code class="language-plaintext highlighter-rouge">Setting</code> component. While <code class="language-plaintext highlighter-rouge">customCSS</code> and <code class="language-plaintext highlighter-rouge">firstTime</code> are included in the settings structure, they are not conventional. <code class="language-plaintext highlighter-rouge">firstTime</code> is only <code class="language-plaintext highlighter-rouge">true</code> on the first time the app is opened and <code class="language-plaintext highlighter-rouge">customCSS</code> is stored in <code class="language-plaintext highlighter-rouge">customCSSPath</code>. To retrieve it, use the <code class="language-plaintext highlighter-rouge">getCustomCSS</code> function.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">defaultSettings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Theme</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">select</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">options</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">light</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">dark</span><span class="dl">'</span><span class="p">],</span>
+        <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">dark</span><span class="dl">'</span>
+    <span class="p">},</span>
+    <span class="na">zoomFactor</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Zoom</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">select</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">options</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">0.7</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">0.8</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">0.9</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">1</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">1.2</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">1.4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">1.6</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">1.8</span><span class="dl">'</span><span class="p">],</span>
+        <span class="na">value</span><span class="p">:</span> <span class="nx">platform</span><span class="p">()</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">win32</span><span class="dl">'</span><span class="p">?</span> <span class="dl">'</span><span class="s1">0.8</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">1</span><span class="dl">'</span>
+    <span class="p">},</span>    
+    <span class="na">customCSS</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Custom CSS</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">code</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">language</span><span class="p">:</span> <span class="dl">'</span><span class="s1">css</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">value</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">version</span><span class="p">:</span> <span class="nx">app</span><span class="p">.</span><span class="nx">getVersion</span><span class="p">(),</span>
+    <span class="na">firstTime</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="paths">Paths</h2>
+
+<p>The paths used by the <code class="language-plaintext highlighter-rouge">Settings</code> class are these:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">settingsPath = [userData]/settings.json</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">customCSSPath = [userData]/css/custom.css</code></p>
+  </li>
+</ul>
+
+        </div>
+    </div>
+</div>
+<div class="spacer-200"></div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"></script>
+    </body>
+
+</html>

@@ -1,0 +1,15 @@
+#logger {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+.log {
+    display: flex;
+    color: white;
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+    align-items: center;
+    margin-top: 5px;
+}

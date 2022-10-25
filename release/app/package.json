@@ -1,0 +1,17 @@
+{
+  "name": "m7kra-boilerplate",
+  "version": "0.3.0",
+  "description": "A simple and elegant music player",
+  "license": "MIT",
+  "author": {
+    "name": "M7kra",
+    "email": "example@gmail.com",
+    "url": "https://m7kra.github.io"
+  },
+  "main": "./dist/main/main.js",
+  "scripts": {
+    "electron-rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
+    "postinstall": "npm run electron-rebuild && npm run link-modules",
+    "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts"
+  }
+}

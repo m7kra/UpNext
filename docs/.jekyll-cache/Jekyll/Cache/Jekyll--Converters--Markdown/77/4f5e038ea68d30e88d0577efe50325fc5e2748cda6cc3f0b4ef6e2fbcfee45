@@ -1,0 +1,46 @@
+I"ê	<h1 class="no_toc" id="events">Events</h1>
+
+<h2 class="no_toc" id="table-of-contents">Table of contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#the-events-class" id="markdown-toc-the-events-class">The Events class</a>    <ul>
+      <li><a href="#methods" id="markdown-toc-methods">Methods</a>        <ul>
+          <li><a href="#on" id="markdown-toc-on"><code class="language-plaintext highlighter-rouge">on</code></a></li>
+          <li><a href="#fire" id="markdown-toc-fire"><code class="language-plaintext highlighter-rouge">fire</code></a></li>
+          <li><a href="#remove" id="markdown-toc-remove"><code class="language-plaintext highlighter-rouge">remove</code></a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="the-events-class">The Events class</h2>
+
+<p>A bunch of events are fired and handled within the app. To facilitate their use, this class provides a simple way to use events. Importing <code class="language-plaintext highlighter-rouge">Events</code> should result in a static object with the following methods:</p>
+
+<h3 id="methods">Methods</h3>
+
+<h4 id="on"><code class="language-plaintext highlighter-rouge">on</code></h4>
+
+<p><strong>Description:</strong> Adds an event listener to <code class="language-plaintext highlighter-rouge">event</code>. If <code class="language-plaintext highlighter-rouge">once</code>, <code class="language-plaintext highlighter-rouge">callback</code>Â should only be called once.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">event</code>, <code class="language-plaintext highlighter-rouge">callback</code>, <code class="language-plaintext highlighter-rouge">once = false</code></p>
+
+<p><strong>Return Value:</strong> <code class="language-plaintext highlighter-rouge">listenerID</code></p>
+
+<h4 id="fire"><code class="language-plaintext highlighter-rouge">fire</code></h4>
+
+<p><strong>Description:</strong> Calls the event listener(s) of <code class="language-plaintext highlighter-rouge">event</code>.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">event</code>, <code class="language-plaintext highlighter-rouge">[...args]</code></p>
+
+<p><strong>Return Value:</strong> None</p>
+
+<h4 id="remove"><code class="language-plaintext highlighter-rouge">remove</code></h4>
+
+<p><strong>Description:</strong> Removes one event listener</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">listenerID</code></p>
+
+<p><strong>Return Value:</strong> None</p>
+:ET

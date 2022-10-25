@@ -1,0 +1,44 @@
+.setting, .setting:focus {
+    height: 40px;
+    line-height: 40px;
+    outline: none;
+    border-radius: var(--border-radius);
+    min-width: 100px;
+    text-align: center;
+    color: var(--color);
+    background-color: var(--bg-color);
+    transition: var(--transition);
+}
+.setting {
+    border: 1px solid var(--color-05);
+}
+.setting:hover, .setting:focus {
+    border: 1px solid var(--color);
+}
+
+.w-tc-editor {
+    min-height: 100px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--color-05);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    color: var(--color);
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+.w-tc-editor:hover, .w-tc-editor:focus {
+    border: 1px solid var(--color);
+}
+
+.form-check.form-switch .form-check-input {
+    width: 50px;
+    height: 30px;
+    background-color: var(--bg-color);
+    color: var(--color);
+    border: 1px solid var(--color-05);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+.form-check.form-switch .form-check-input:checked {
+    background-color: var(--color-02);
+}

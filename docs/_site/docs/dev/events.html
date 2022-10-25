@@ -1,0 +1,107 @@
+<html>
+
+    <head>
+        <title>Musicly - Events</title>
+        <meta name="description" content="Musicly - Events. Musicly is a simple and elegant open-source music player.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <link rel="stylesheet" href="/Musicly/css/styles.css">
+        <link rel="icon" href="/Musicly/assets/logo.png">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg bg-light fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex" href="/Musicly/">
+                    <img src="/Musicly/assets/logo.png" alt="" width="32px" height="32px" class="d-inline-block">
+                    Musicly
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/m7kra/Musicly/releases">Download</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Musicly/docs/">Documentation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://m7kra.github.io/">M7kra</a>
+                        </li>
+                        <div class="d-flex w-100"></div>
+                        <li class="nav-item">
+                            <a class="navbar-brand d-flex align-items-center" href="https://github.com/m7kra/Musicly">
+                                <img src="/Musicly/assets/github.png" alt="" width="30px" height="30px" class="d-inline-block"
+                                    style="opacity: 0.55;">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <link rel="stylesheet" href="/Musicly/css/syntax-highlight.css"/>
+<link rel="stylesheet" href="/Musicly/css/docs.css"/>
+<div class="container-sm">
+    <div class="row d-flex justify-content-center">
+        <div id="content" class="col-xl-8 col-lg-9 col-sm-10 col-12">
+            <h1 class="no_toc" id="events">Events</h1>
+
+<h2 class="no_toc" id="table-of-contents">Table of contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#the-events-class" id="markdown-toc-the-events-class">The Events class</a>    <ul>
+      <li><a href="#methods" id="markdown-toc-methods">Methods</a>        <ul>
+          <li><a href="#on" id="markdown-toc-on"><code class="language-plaintext highlighter-rouge">on</code></a></li>
+          <li><a href="#fire" id="markdown-toc-fire"><code class="language-plaintext highlighter-rouge">fire</code></a></li>
+          <li><a href="#remove" id="markdown-toc-remove"><code class="language-plaintext highlighter-rouge">remove</code></a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="the-events-class">The Events class</h2>
+
+<p>A bunch of events are fired and handled within the app. To facilitate their use, this class provides a simple way to use events. Importing <code class="language-plaintext highlighter-rouge">Events</code> should result in a static object with the following methods:</p>
+
+<h3 id="methods">Methods</h3>
+
+<h4 id="on"><code class="language-plaintext highlighter-rouge">on</code></h4>
+
+<p><strong>Description:</strong> Adds an event listener to <code class="language-plaintext highlighter-rouge">event</code>. If <code class="language-plaintext highlighter-rouge">once</code>, <code class="language-plaintext highlighter-rouge">callback</code> should only be called once.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">event</code>, <code class="language-plaintext highlighter-rouge">callback</code>, <code class="language-plaintext highlighter-rouge">once = false</code></p>
+
+<p><strong>Return Value:</strong> <code class="language-plaintext highlighter-rouge">listenerID</code></p>
+
+<h4 id="fire"><code class="language-plaintext highlighter-rouge">fire</code></h4>
+
+<p><strong>Description:</strong> Calls the event listener(s) of <code class="language-plaintext highlighter-rouge">event</code>.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">event</code>, <code class="language-plaintext highlighter-rouge">[...args]</code></p>
+
+<p><strong>Return Value:</strong> None</p>
+
+<h4 id="remove"><code class="language-plaintext highlighter-rouge">remove</code></h4>
+
+<p><strong>Description:</strong> Removes one event listener</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">listenerID</code></p>
+
+<p><strong>Return Value:</strong> None</p>
+
+        </div>
+    </div>
+</div>
+<div class="spacer-200"></div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"></script>
+    </body>
+
+</html>

@@ -1,0 +1,223 @@
+I"�l<h1 class="no_toc" id="components">Components</h1>
+
+<h2 class="no_toc" id="table-of-contents">Table of Contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#app" id="markdown-toc-app"><code class="language-plaintext highlighter-rouge">App</code></a></li>
+  <li><a href="#library" id="markdown-toc-library"><code class="language-plaintext highlighter-rouge">Library</code></a></li>
+  <li><a href="#albumdetails" id="markdown-toc-albumdetails"><code class="language-plaintext highlighter-rouge">AlbumDetails</code></a></li>
+  <li><a href="#queue" id="markdown-toc-queue"><code class="language-plaintext highlighter-rouge">Queue</code></a></li>
+  <li><a href="#settings" id="markdown-toc-settings"><code class="language-plaintext highlighter-rouge">Settings</code></a></li>
+  <li><a href="#miniplayer" id="markdown-toc-miniplayer"><code class="language-plaintext highlighter-rouge">MiniPlayer</code></a></li>
+  <li><a href="#header" id="markdown-toc-header"><code class="language-plaintext highlighter-rouge">Header</code></a></li>
+  <li><a href="#controllarea" id="markdown-toc-controllarea"><code class="language-plaintext highlighter-rouge">ControllArea</code></a></li>
+  <li><a href="#cover" id="markdown-toc-cover"><code class="language-plaintext highlighter-rouge">Cover</code></a></li>
+  <li><a href="#contextmenu" id="markdown-toc-contextmenu"><code class="language-plaintext highlighter-rouge">ContextMenu</code></a></li>
+  <li><a href="#logger" id="markdown-toc-logger"><code class="language-plaintext highlighter-rouge">Logger</code></a></li>
+  <li><a href="#searchbox" id="markdown-toc-searchbox"><code class="language-plaintext highlighter-rouge">SearchBox</code></a></li>
+  <li><a href="#tracklist" id="markdown-toc-tracklist"><code class="language-plaintext highlighter-rouge">TrackList</code></a></li>
+  <li><a href="#track" id="markdown-toc-track"><code class="language-plaintext highlighter-rouge">Track</code></a></li>
+  <li><a href="#setting" id="markdown-toc-setting"><code class="language-plaintext highlighter-rouge">Setting</code></a></li>
+  <li><a href="#tutorial" id="markdown-toc-tutorial"><code class="language-plaintext highlighter-rouge">Tutorial</code></a></li>
+  <li><a href="#genre" id="markdown-toc-genre"><code class="language-plaintext highlighter-rouge">Genre</code></a></li>
+  <li><a href="#genrecreator" id="markdown-toc-genrecreator"><code class="language-plaintext highlighter-rouge">GenreCreator</code></a></li>
+  <li><a href="#progressbar" id="markdown-toc-progressbar"><code class="language-plaintext highlighter-rouge">ProgressBar</code></a></li>
+  <li><a href="#button" id="markdown-toc-button"><code class="language-plaintext highlighter-rouge">Button</code></a></li>
+  <li><a href="#searchdummy" id="markdown-toc-searchdummy"><code class="language-plaintext highlighter-rouge">SearchDummy</code></a></li>
+  <li><a href="#icons" id="markdown-toc-icons"><code class="language-plaintext highlighter-rouge">Icons</code></a></li>
+</ul>
+
+<h2 id="app"><code class="language-plaintext highlighter-rouge">App</code></h2>
+
+<p><strong>Description:</strong> This is the main component. It stores a series of states and renders five other components (<code class="language-plaintext highlighter-rouge">Library</code>, <code class="language-plaintext highlighter-rouge">Settings</code>, <code class="language-plaintext highlighter-rouge">AlbumDetails</code>, <code class="language-plaintext highlighter-rouge">Queue</code> and <code class="language-plaintext highlighter-rouge">MiniPlayer</code>) according to <code class="language-plaintext highlighter-rouge">view</code>. It also renders a bunch of other components used throughout the app: a <code class="language-plaintext highlighter-rouge">ContextMenu</code>, a spinner if <code class="language-plaintext highlighter-rouge">loading</code> and a <code class="language-plaintext highlighter-rouge">Tutorial</code> if <code class="language-plaintext highlighter-rouge">settings.firstTime</code>.</p>
+
+<p><strong>Properties:</strong> None</p>
+
+<p><strong>Hooks:</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">view</span><span class="p">,</span> <span class="nx">setView</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">'</span><span class="s1">library</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Info about the user's library</span>
+<span class="kd">const</span> <span class="p">[</span><span class="nx">library</span><span class="p">,</span> <span class="nx">setLibrary</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">({</span>
+    <span class="na">searchParameters</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">query</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span>
+        <span class="na">genre</span><span class="p">:</span> <span class="dl">''</span>
+    <span class="p">},</span>
+    <span class="na">albums</span><span class="p">:</span> <span class="p">[],</span> <span class="c1">// Array of albums that match the search parameters</span>
+    <span class="na">tracks</span><span class="p">:</span> <span class="p">[],</span> <span class="c1">// Array of tracks that match the search parameters</span>
+    <span class="na">genres</span><span class="p">:</span> <span class="p">[]</span> <span class="c1">// Array of all genres in library </span>
+<span class="p">});</span>
+
+<span class="c1">// Info about what is playing and the queue</span>
+<span class="kd">const</span> <span class="p">[</span><span class="nx">playback</span><span class="p">,</span> <span class="nx">setPlayback</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">({</span>
+    <span class="na">album</span><span class="p">:</span> <span class="p">{},</span> <span class="c1">// Object that stores info about the playing album</span>
+    <span class="na">track</span><span class="p">:</span> <span class="p">{},</span> <span class="c1">// Object that stores info about the playing track</span>
+    <span class="na">queue</span><span class="p">:</span> <span class="p">[],</span> <span class="c1">// Array of tracks in queue</span>
+    <span class="na">position</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// Index of the playing track in queue</span>
+    <span class="na">progress</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// Returns a value between 0 and 1</span>
+    <span class="na">playing</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kc">false</span> <span class="c1">// Is playback playing or paused?</span>
+<span class="p">});</span>
+
+<span class="c1">// Info about what should be displayed in the AlbumDetails component</span>
+<span class="kd">const</span> <span class="p">[</span><span class="nx">details</span><span class="p">,</span> <span class="nx">setDetails</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">({</span>
+    <span class="na">album</span><span class="p">:</span> <span class="p">{},</span> <span class="c1">// Generic album info</span>
+    <span class="na">tracks</span><span class="p">:</span> <span class="p">[],</span> <span class="c1">// List of album tracks</span>
+<span class="p">});</span>
+
+<span class="c1">// Variable that stores current settings</span>
+<span class="kd">const</span> <span class="p">[</span><span class="nx">settings</span><span class="p">,</span> <span class="nx">setSettings</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">({});</span>
+
+<span class="kd">const</span> <span class="p">[</span><span class="nx">logs</span><span class="p">,</span> <span class="nx">setLogs</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">();</span>
+
+<span class="c1">// Controlls whether a spinner should be shown</span>
+<span class="kd">const</span> <span class="p">[</span><span class="nx">loading</span><span class="p">,</span> <span class="nx">setLoading</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">controller</span> <span class="o">=</span> <span class="nx">useMemo</span><span class="p">(</span>
+    <span class="k">new</span> <span class="nx">Controller</span><span class="p">(</span><span class="nx">setView</span><span class="p">,</span> <span class="nx">setLibrary</span><span class="p">,</span> <span class="nx">setDetails</span><span class="p">,</span> <span class="nx">setSettings</span><span class="p">,</span> <span class="nx">setPlayback</span><span class="p">,</span> <span class="nx">setLoading</span><span class="p">,</span> <span class="nx">addLog</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="library"><code class="language-plaintext highlighter-rouge">Library</code></h2>
+
+<p><strong>Description:</strong> Component rendered inside the <code class="language-plaintext highlighter-rouge">App</code>, displaying a <code class="language-plaintext highlighter-rouge">SearchBox</code>, library albums, a <code class="language-plaintext highlighter-rouge">TrackList</code> that matches search parameters and a <code class="language-plaintext highlighter-rouge">ControllArea</code>.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">library</code>, <code class="language-plaintext highlighter-rouge">playback</code></p>
+
+<h2 id="albumdetails"><code class="language-plaintext highlighter-rouge">AlbumDetails</code></h2>
+
+<p><strong>Description:</strong> Component rendered inside the <code class="language-plaintext highlighter-rouge">App</code>, displaying an album’s details such as <code class="language-plaintext highlighter-rouge">Cover</code>, <code class="language-plaintext highlighter-rouge">TrackList</code> and <code class="language-plaintext highlighter-rouge">artist</code>. Also has a <code class="language-plaintext highlighter-rouge">ControllArea</code>.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">details</code>, <code class="language-plaintext highlighter-rouge">playback</code></p>
+
+<h2 id="queue"><code class="language-plaintext highlighter-rouge">Queue</code></h2>
+
+<p><strong>Description:</strong> Component rendered inside the <code class="language-plaintext highlighter-rouge">App</code>, containing a <code class="language-plaintext highlighter-rouge">ControllArea</code> and a list of the tracks that will play next.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">playback</code></p>
+
+<h2 id="settings"><code class="language-plaintext highlighter-rouge">Settings</code></h2>
+
+<p><strong>Description:</strong> Displays current settings, using the <code class="language-plaintext highlighter-rouge">Setting</code> component, and allows to modify them. The settings <code class="language-plaintext highlighter-rouge">firstTime</code> and <code class="language-plaintext highlighter-rouge">version</code> should not be displayed nor modified, and the new settings should be saved automatically. This component should also allow to reset the settings, reset the library and to go through the tutorial again.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">settings</code>, <code class="language-plaintext highlighter-rouge">displayTutorial</code></p>
+
+<h2 id="miniplayer"><code class="language-plaintext highlighter-rouge">MiniPlayer</code></h2>
+
+<p><strong>Description:</strong> Renders a mini-player view, with the ability to return to normal, play, pause, skip forward and skip backward. Should also display cover and current track name. A close button should change the view back to the library and minimize.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">playback</code></p>
+
+<h2 id="header"><code class="language-plaintext highlighter-rouge">Header</code></h2>
+
+<p><strong>Description:</strong> Displays the app’s header bar, with app navigation utilities and window buttons. Specifically, people should be able to access <code class="language-plaintext highlighter-rouge">settings</code> and open files if <code class="language-plaintext highlighter-rouge">library</code> is true (meaning that the parent of the component is <code class="language-plaintext highlighter-rouge">Library</code>), and go back to the library otherwise. The normal three window control buttons must be displayed, and minimize should trigger mini player if  <code class="language-plaintext highlighter-rouge">settings.miniPlayer == true</code>.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">library</code></p>
+
+<h2 id="controllarea"><code class="language-plaintext highlighter-rouge">ControllArea</code></h2>
+
+<p><strong>Description:</strong> Displays information about the currently playing track (cover, name and album), and allows to seek, pause, play, skip forward and skip backward. If <code class="language-plaintext highlighter-rouge">dummy</code>, no events should be fired (this is used in the tutorial).</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">playback</code>, <code class="language-plaintext highlighter-rouge">dummy = false</code></p>
+
+<h2 id="cover"><code class="language-plaintext highlighter-rouge">Cover</code></h2>
+
+<p><strong>Description:</strong> Displays an album cover. Some buttons are displayed according to the value of <code class="language-plaintext highlighter-rouge">buttons</code> (<code class="language-plaintext highlighter-rouge">play</code> for playing the album and <code class="language-plaintext highlighter-rouge">details</code> for a detailed album view). Right clicking on the album should bring up a context menu with the following options: play album, add album to queue, album details, add cover and delete album.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">album</code>, <code class="language-plaintext highlighter-rouge">buttons = []</code>, <code class="language-plaintext highlighter-rouge">parent</code> (may contain <code class="language-plaintext highlighter-rouge">play</code> and <code class="language-plaintext highlighter-rouge">details</code>).</p>
+
+<h2 id="contextmenu"><code class="language-plaintext highlighter-rouge">ContextMenu</code></h2>
+
+<p><strong>Description:</strong> Renders a context menu on a given <code class="language-plaintext highlighter-rouge">position</code>, showing it whenever it is <code class="language-plaintext highlighter-rouge">visible</code>. The same file should also give access to a function, <code class="language-plaintext highlighter-rouge">addContextMenu</code>, which allows to set the states of <code class="language-plaintext highlighter-rouge">ContextMenu</code>. Please note that the component should be designed in such a way that it is called only once. Furthermore, the <code class="language-plaintext highlighter-rouge">items</code> that are passed onto <code class="language-plaintext highlighter-rouge">addContextMenu</code> should be an array dictionaries with entries <code class="language-plaintext highlighter-rouge">text</code> and <code class="language-plaintext highlighter-rouge">onClick</code>.</p>
+
+<p><strong>Properties:</strong> None</p>
+
+<p><strong>Hooks:</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Which items are to be displayed in the context menu</span>
+<span class="kd">const</span> <span class="p">[</span><span class="nx">items</span><span class="p">,</span> <span class="nx">setItems</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">([]);</span>
+<span class="c1">// The coordinates of the context menu</span>
+<span class="kd">const</span> <span class="p">[</span><span class="nx">position</span><span class="p">,</span> <span class="nx">setPosition</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">({</span><span class="na">x</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span><span class="mi">0</span><span class="p">});</span>
+<span class="c1">// Whether the context menu should be shown</span>
+<span class="kd">const</span> <span class="p">[</span><span class="nx">visible</span><span class="p">,</span> <span class="nx">setVisibility</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="logger"><code class="language-plaintext highlighter-rouge">Logger</code></h2>
+
+<p><strong>Description:</strong> Displays a list of log messages.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">logs</code>, <code class="language-plaintext highlighter-rouge">removeLog</code></p>
+
+<h2 id="searchbox"><code class="language-plaintext highlighter-rouge">SearchBox</code></h2>
+
+<p><strong>Description:</strong> Allows users to type in a <code class="language-plaintext highlighter-rouge">query</code> and choose one <code class="language-plaintext highlighter-rouge">genre</code> filter. If it is a dummy, parameters should be passed to <code class="language-plaintext highlighter-rouge">setParameters</code> instead.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">searchParameters</code>, <code class="language-plaintext highlighter-rouge">genres</code>, <code class="language-plaintext highlighter-rouge">dummy = false</code>, <code class="language-plaintext highlighter-rouge">[setParameters]</code>.</p>
+
+<h2 id="tracklist"><code class="language-plaintext highlighter-rouge">TrackList</code></h2>
+
+<p><strong>Description:</strong> Displays a list of tracks. If <code class="language-plaintext highlighter-rouge">parent == AlbumDetails</code>, a separator between different discs should be added. This component has to pass to its children whether a track is playing or not, which is a bit complicated given that it is a general component. If <code class="language-plaintext highlighter-rouge">TrackList</code> is rendered inside <code class="language-plaintext highlighter-rouge">AlbumDetails</code> and <code class="language-plaintext highlighter-rouge">Library</code>, we can just check for <code class="language-plaintext highlighter-rouge">track.id</code>. In the queue, however, the same track may appear multiple times, and we have to check if <code class="language-plaintext highlighter-rouge">index == playback.position</code>.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">playback</code>, <code class="language-plaintext highlighter-rouge">dummy = false</code>, <code class="language-plaintext highlighter-rouge">parent</code>.</p>
+
+<h2 id="track"><code class="language-plaintext highlighter-rouge">Track</code></h2>
+
+<p><strong>Description:</strong> Displays a single track. The component should display the track number and name, and also a sprite if it is currently playing. <code class="language-plaintext highlighter-rouge">jump</code> and <code class="language-plaintext highlighter-rouge">tracks</code> property specify which tracks should be played if this track is clicked (in an album, for instance, you want the user to be able choose a track and play all the ones that come after it). <code class="language-plaintext highlighter-rouge">parent</code> is the component that contains the track, and if <code class="language-plaintext highlighter-rouge">parent == queue</code> a button allowing to remove the track from the queue should be displayed. If <code class="language-plaintext highlighter-rouge">parent == albumDetails</code>, the track should be editable (i.e., the title and composer should be changeable). An optional property <code class="language-plaintext highlighter-rouge">dummy</code> should prevent all events from being fired. It is used in the tutorial.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">track</code>, <code class="language-plaintext highlighter-rouge">classes</code>, <code class="language-plaintext highlighter-rouge">playing</code>,  and <code class="language-plaintext highlighter-rouge">tracks</code>, <code class="language-plaintext highlighter-rouge">jump</code>, <code class="language-plaintext highlighter-rouge">parent</code>, <code class="language-plaintext highlighter-rouge">isDragging</code></p>
+
+<h2 id="setting"><code class="language-plaintext highlighter-rouge">Setting</code></h2>
+
+<p><strong>Description:</strong> Displays a single <code class="language-plaintext highlighter-rouge">setting</code>. In order to modify the setting, <code class="language-plaintext highlighter-rouge">modify</code> should be called. The value to be passed to the function is the entire setting. Here is an example:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">setting</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Theme</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">select</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">options</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">light</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">dark</span><span class="dl">'</span><span class="p">],</span>
+        <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">dark</span><span class="dl">'</span>
+<span class="p">};</span>
+<span class="nx">setting</span><span class="p">.</span><span class="nx">selected</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">dark</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">modify</span><span class="p">(</span><span class="nx">setting</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">setting</code>, <code class="language-plaintext highlighter-rouge">modify</code>,</p>
+
+<h2 id="tutorial"><code class="language-plaintext highlighter-rouge">Tutorial</code></h2>
+
+<p><strong>Description:</strong> Renders a brief introductory tutorial, based on a series of slides.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">setTutorial</code> (closes the tutorial when called with the argument <code class="language-plaintext highlighter-rouge">false</code>.</p>
+
+<h2 id="genre"><code class="language-plaintext highlighter-rouge">Genre</code></h2>
+
+<p><strong>Description:</strong> Renders a single genre tag. In case <code class="language-plaintext highlighter-rouge">deleteButton</code> is not undefined, an option should be added to remove the genre, triggering the <code class="language-plaintext highlighter-rouge">deleteButton</code> function.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">genre</code>, <code class="language-plaintext highlighter-rouge">deleteButton</code>.</p>
+
+<h2 id="genrecreator"><code class="language-plaintext highlighter-rouge">GenreCreator</code></h2>
+
+<p><strong>Description:</strong> Allows to type in a new genre for an album, and passes it on to <code class="language-plaintext highlighter-rouge">createGenre</code>.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">createGenre</code></p>
+
+<h2 id="progressbar"><code class="language-plaintext highlighter-rouge">ProgressBar</code></h2>
+
+<p><strong>Description:</strong> Sets up a progress bar that regularly updates. Furthermore, allows to set the a new position firing the <code class="language-plaintext highlighter-rouge">setProgress</code> event. <code class="language-plaintext highlighter-rouge">dummy</code>, used inside the tutorial, prevents all events from being fired.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">getProgress</code>, <code class="language-plaintext highlighter-rouge">dummy = false</code></p>
+
+<h2 id="button"><code class="language-plaintext highlighter-rouge">Button</code></h2>
+
+<p><strong>Description:</strong> Wrapper component that builds a button around its children. Also sets up a shortcut that for <code class="language-plaintext highlighter-rouge">onClick</code>, which should be removed when the button removed from the DOM.</p>
+
+<p><strong>Properties:</strong> <code class="language-plaintext highlighter-rouge">onClick</code>, <code class="language-plaintext highlighter-rouge">type = box</code> (<code class="language-plaintext highlighter-rouge">box</code>, <code class="language-plaintext highlighter-rouge">round</code>, <code class="language-plaintext highlighter-rouge">nodecor</code>, or <code class="language-plaintext highlighter-rouge">box</code>) and <code class="language-plaintext highlighter-rouge">shortcuts</code>.</p>
+
+<h2 id="searchdummy"><code class="language-plaintext highlighter-rouge">SearchDummy</code></h2>
+
+<p><strong>Description:</strong> Implements a dummy search box, used inside tutorial.</p>
+
+<p><strong>Properties:</strong> None</p>
+
+<h2 id="icons"><code class="language-plaintext highlighter-rouge">Icons</code></h2>
+
+<p><strong>Description:</strong>  Rather than a component, this module provides a series of icon components. Each of them accepts a property <code class="language-plaintext highlighter-rouge">size</code> defaulting to 32. The following icons are included: <code class="language-plaintext highlighter-rouge">Logo</code>, <code class="language-plaintext highlighter-rouge">Play</code>, <code class="language-plaintext highlighter-rouge">Pause</code>, <code class="language-plaintext highlighter-rouge">SkipFwd</code>, <code class="language-plaintext highlighter-rouge">SkipBwd</code>, <code class="language-plaintext highlighter-rouge">Settings</code>, <code class="language-plaintext highlighter-rouge">Square</code>, <code class="language-plaintext highlighter-rouge">Plus</code>, <code class="language-plaintext highlighter-rouge">Circle</code>, <code class="language-plaintext highlighter-rouge">CircleOutline</code>, <code class="language-plaintext highlighter-rouge">List</code>, <code class="language-plaintext highlighter-rouge">CD</code>, <code class="language-plaintext highlighter-rouge">Search</code>, <code class="language-plaintext highlighter-rouge">Back</code>, <code class="language-plaintext highlighter-rouge">Queue</code>, <code class="language-plaintext highlighter-rouge">Close</code>, <code class="language-plaintext highlighter-rouge">Collapse</code>, <code class="language-plaintext highlighter-rouge">Edit</code> and <code class="language-plaintext highlighter-rouge">Check</code>.</p>
+:ET

@@ -1,0 +1,137 @@
+<html>
+
+    <head>
+        <title>Musicly - Developer documentation</title>
+        <meta name="description" content="Musicly - Developer documentation. Musicly is a simple and elegant open-source music player.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <link rel="stylesheet" href="/Musicly/css/styles.css">
+        <link rel="icon" href="/Musicly/assets/logo.png">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg bg-light fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex" href="/Musicly/">
+                    <img src="/Musicly/assets/logo.png" alt="" width="32px" height="32px" class="d-inline-block">
+                    Musicly
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/m7kra/Musicly/releases">Download</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Musicly/docs/">Documentation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://m7kra.github.io/">M7kra</a>
+                        </li>
+                        <div class="d-flex w-100"></div>
+                        <li class="nav-item">
+                            <a class="navbar-brand d-flex align-items-center" href="https://github.com/m7kra/Musicly">
+                                <img src="/Musicly/assets/github.png" alt="" width="30px" height="30px" class="d-inline-block"
+                                    style="opacity: 0.55;">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <link rel="stylesheet" href="/Musicly/css/syntax-highlight.css"/>
+<link rel="stylesheet" href="/Musicly/css/docs.css"/>
+<div class="container-sm">
+    <div class="row d-flex justify-content-center">
+        <div id="content" class="col-xl-8 col-lg-9 col-sm-10 col-12">
+            <h1 class="no_toc" id="developer-documentation">Developer documentation</h1>
+
+<h2 class="no_toc" id="table-of-contents">Table of contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#a-couple-remarks" id="markdown-toc-a-couple-remarks">A couple remarks</a></li>
+  <li><a href="#installing-and-building" id="markdown-toc-installing-and-building">Installing and Building</a></li>
+  <li><a href="#structure" id="markdown-toc-structure">Structure</a>    <ul>
+      <li><a href="#main-process" id="markdown-toc-main-process">Main Process</a></li>
+      <li><a href="#renderer-process" id="markdown-toc-renderer-process">Renderer Process</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="a-couple-remarks">A couple remarks</h2>
+
+<p>I’m not a seasoned programmer. In fact, my journey in programming started about two years ago, in a somewhat unstable way. A couple courses, YouTube videos, etc. Therefore, my code isn’t great. You should expect to find some errors, and a lot of bad practices. I have, though, made some effort to write clean and understandable code, forcing myself to write a lot of comments (to many?) and to make a structured project (actually the first complete one).</p>
+
+<p>This explains how this project came to be. Given that I’m inexperienced, I would appreciate any kind of feedback: pull requests, issues, comments or just a thumbs-up!</p>
+
+<p>I hope you get as exited with this project as I did.</p>
+
+<p><em>Final note: My English isn’t great.</em></p>
+
+<p>M7kra</p>
+
+<h2 id="installing-and-building">Installing and Building</h2>
+
+<p>In order to download the source code, run the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/m7kra/Musicly.git
+npm <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>You may then build with <code class="language-plaintext highlighter-rouge">npm run package</code>.</p>
+
+<h2 id="structure">Structure</h2>
+
+<p>This app is based on <a href="https://www.electronjs.org/">Electron</a> and <a href="https://reactjs.org/">React</a>, put together with <a href="https://electron-react-boilerplate.js.org/">Electron React Boilerplate</a>. Following the structure defined by Electron React Boilerplate, the app is divided into two processes: main, which deals with databases, settings and getting the app up and running, and renderer, responsible for the UI and music playback. The two processes communicate using Electron’s <a href="https://www.electronjs.org/docs/latest/tutorial/ipc">IPC</a> (Inter-Process Communication).</p>
+
+<h3 id="main-process">Main Process</h3>
+
+<p>Part of the program that interacts with the file system (creating a database, storing settings and covers) and with the OS (creating and destroying windows, resizing them, etc.).</p>
+
+<p>Two helper modules are defined:</p>
+
+<ul>
+  <li>
+    <p><a href="/Musicly/docs/dev/settings"><code class="language-plaintext highlighter-rouge">Settings</code></a>: Gets and sets the user settings.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">utilities</code>: Provides utilities for window management.</p>
+  </li>
+</ul>
+
+<p>These are managed by the <a href="./dev/main"><code class="language-plaintext highlighter-rouge">main.js</code></a> script which also handles <code class="language-plaintext highlighter-rouge">ipcMain</code> events.</p>
+
+<h3 id="renderer-process">Renderer Process</h3>
+
+<p>Part of the program that displays the UI and manages the music playback. The helper modules and components were designed with a VMC structure in mind. I suspect, however, that this failed :). These are its different pieces:</p>
+
+<ul>
+  <li>
+    <p><a href="./dev/events"><code class="language-plaintext highlighter-rouge">Events</code></a>: A helper module that eases sending and handling of events within the app.</p>
+  </li>
+  <li>
+    <p><a href="./dev/shortcuts"><code class="language-plaintext highlighter-rouge">Shortcuts</code></a>: A helper module that allows to easily set up and remove app shortcuts.</p>
+  </li>
+  <li>
+    <p><a href="./dev/controller"><code class="language-plaintext highlighter-rouge">Controller</code></a>: The working horse of the renderer process, this module communicates with the main process, manages music playback and the application’s state.</p>
+  </li>
+  <li>
+    <p><a href="./dev/components"><code class="language-plaintext highlighter-rouge">Components</code></a>: A bunch of React functional components, of which <code class="language-plaintext highlighter-rouge">App</code> is the main one, rendering all the others and calling the <code class="language-plaintext highlighter-rouge">Controller</code>.</p>
+  </li>
+</ul>
+
+        </div>
+    </div>
+</div>
+<div class="spacer-200"></div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"></script>
+    </body>
+
+</html>

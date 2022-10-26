@@ -19,7 +19,7 @@
     align-items: center;
     justify-content: flex-start;
     white-space: nowrap;
-    background-color: rgba(0,0,0,0.2);
+    background-color: var(--color-01);
 }
 /* --container-width is set on the script */
 #control-button-container:hover {

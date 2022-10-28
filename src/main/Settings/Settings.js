@@ -21,7 +21,7 @@ export default class Settings {
      */
     static async get() {
         // Get the stored settings and decide whether to use the default ones
-        let definedSettings = await settings.get()
+        let definedSettings = await settings.get();
 
         // If last version is different than the current one, then the tutorial
         // should be shown

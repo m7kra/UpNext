@@ -88,7 +88,7 @@ export default function Setting({setting, modify}) {
     }
 
     // Render a text input
-    else if (setting.type == 'text') {
+    else if (setting.type == 'text' || setting.type == 'filepath') {
         return (
             <>
                 <h3>{setting.name}</h3>

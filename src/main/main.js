@@ -3,8 +3,12 @@ import Settings from './Settings/Settings';
 import { app, ipcMain, dialog } from 'electron';
 import { platform } from 'os';
 import versionCheck from 'github-version-checker';
+import fs from 'fs';
+import path from 'path';
 
 let mainWindow;
+
+const defaultFilePath = path.join(app.getPath('userData'), 'todo.md');
 
 app.on('window-all-closed', () => {
     // Respect the OSX convention of having the application in memory even
@@ -22,6 +26,29 @@ app.whenReady().then( async () => {
         if (mainWindow === null) createWindow();
     });
 }).catch(console.log);
+
+/**
+ * Opens the current todo list file. If none is defined, uses
+ * `[userData]/todo.md` as the default file.
+ */
+function openFile() {
+    const file = Settings.get().filePath;
+
+    if (file) return fs.readFileSync(file).toString();
+    if (fs.existsSync(defaultFilePath)) return fs.readFileSync(defaultFilePath).toString();
+    return '';
+}
+
+/**
+ * Saves the current todo list file. If none is defined, uses
+ * `[userData]/todo.md` as the default file.
+ */
+function saveFile(content) {
+    const file = Settings.get().filePath;
+
+    if (file) fs.writeFile(file, content, () => {});
+    else fs.writeFile(defaultFilePath, content, () => {});
+}
 
 /**
  * Resizes and closes the window according to the button pressed.
@@ -51,7 +78,7 @@ let blockID;
 async function checkForUpdates() {
     try {
         return await versionCheck({
-            repo: 'M7kraBoilerplate',
+            repo: 'UpNext',
             owner: 'm7kra',
             currentVersion: app.getVersion(),
         });
@@ -61,6 +88,8 @@ async function checkForUpdates() {
     }
 }
 
+ipcMain.handle('openFile', () => openFile());
+ipcMain.handle('saveFile', (e, content) => saveFile(content));
 ipcMain.handle('windowButton', (e, button) => windowButton(button));
 ipcMain.handle('getSettings', Settings.get);
 ipcMain.handle('setSettings', (e, settings) => Settings.set(settings));
@@ -72,7 +101,7 @@ process.on('uncaughtException', (err) => {
     const error = {
         type: 'error',
         title: 'An error occured',
-        message: 'Try to restart M7kraBoilerplate and, if the error persists, please contact me at https://github.com/m7kra/M7kraBoilerplate/issues or luiswbarbosa@gmail.com, with the following error: ' + err.message
+        message: 'Try to restart UpNext and, if the error persists, please contact me at https://github.com/m7kra/UpNext/issues or luiswbarbosa@gmail.com, with the following error: ' + err.message
     };
     dialog.showMessageBoxSync(error);
     app.exit(1);

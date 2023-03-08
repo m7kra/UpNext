@@ -39,9 +39,27 @@ const controller = useMemo(
 
 ## `Main`
 
-Displays a generic banner.
+Displays a list of `Task`s and `Heading`s and a `Title`, which can be dragged and dropped. It also allows to add new tasks and headings, and to search for tasks. Changes are saved automatically. It also renders a `Logger` and a `ContextMenu`.
 
 **Properties:** None
+
+## `Task`
+
+**Description:** Displays a single task. It must be editable and can be marked as complete.
+
+**Properties:** `task`, `modify`, `remove`
+
+## `Heading`
+
+**Description:** Displays a single heading. It must be editable.
+
+**Properties:** `heading`, `modify`, `remove`
+
+## `Title`
+
+**Description:** Displays the title of the document. It must be editable.
+
+**Properties:** `title`, `modify`
 
 ## `Settings`
 
@@ -54,6 +72,12 @@ Displays a generic banner.
 **Description:** Displays the app's header bar, with app navigation utilities and window buttons. Specifically, people should be able to access `settings` if `view == main` and go back to the main view otherwise. The normal three window control buttons must be displayed.
 
 **Properties:** `view`
+
+## `CreateGap`
+
+**Description:** Renders a gap that can be used to create a new task or heading. When hovered, expands and renders two buttons, one for creating a task and one for creating a heading.
+
+**Properties:** `createTask`, `createHeading`
 
 ## `ContextMenu`
 

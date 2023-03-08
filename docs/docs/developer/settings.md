@@ -76,12 +76,27 @@ const defaultSettings = {
         type: 'select',
         options: ['0.7', '0.8', '0.9', '1', '1.2', '1.4', '1.6', '1.8'],
         value: platform() == 'win32'? '0.8' : '1'
-    },    
+    },
     customCSS: {
         name: 'Custom CSS',
         type: 'code',
         language: 'css',
         value: '',
+    },
+    filePath: {
+        name: 'Todo list file path',
+        type: 'filepath',
+        value: ''
+    },
+    dimCompleted: {
+        name: 'Dim completed tasks',
+        type: 'bool',
+        value: true
+    },
+    showCompleted: {
+        name: 'Show completed tasks',
+        type: 'bool',
+        value: true
     },
     version: app.getVersion(),
     firstTime: true

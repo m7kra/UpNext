@@ -29,6 +29,22 @@ class Controller {
 
 ### Methods
 
+#### `openFile`
+
+**Description:** Opens the task list file.
+
+**Arguments:** None
+
+**Return value:** `contents`
+
+#### `saveFile`
+
+**Description:** Saves the task list file.
+
+**Arguments:** `contents`
+
+**Return value:** None
+
 #### `setView`
 
 **Description:** Sets the app view to `view`.

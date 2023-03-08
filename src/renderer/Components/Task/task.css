@@ -1,0 +1,36 @@
+.task {
+    background-color: var(--color-005);
+    border-radius: var(--border-radius);
+    padding: 10px 5px;
+}
+.task.complete {
+    background-image: linear-gradient(var(--color-005), var(--color-005)), linear-gradient(rgba(0, 255, 0, 0.05), rgba(0, 255, 0, 0.05));
+}
+.task-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.task-body > p {
+    margin: 0px;
+}
+.task-deadline {
+    color: var(--color-05);
+    font-size: 15px;
+    font-weight: bold;
+    margin: 5px 0px;
+    display: flex;
+    align-items: center;
+}
+.task-deadline > p {
+    margin: 0px;
+    margin-top: 5px;
+}
+.task-content {
+    color: var(--color-08);
+    font-size: 20px;
+    margin: 5px 0px;
+}
+.task-complete {
+    padding-top: 35px;
+}

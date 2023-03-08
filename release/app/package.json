@@ -1,7 +1,7 @@
 {
-  "name": "m7kra-boilerplate",
+  "name": "upnext",
   "version": "0.1.0",
-  "description": "A simple and elegant music player",
+  "description": "A simple todo app",
   "license": "MIT",
   "author": {
     "name": "M7kra",

@@ -1,20 +1,20 @@
 {
-  "name": "m7kra-boilerplate",
+  "name": "upnext",
   "version": "0.1.0",
-  "description": "A boilerplate for simple apps following the design of Musicly",
+  "description": "A simple todo app",
   "keywords": [
     "simple",
     "elegant",
-    "boilerplate",
+    "todo",
     "react",
     "electron"
   ],
   "bugs": {
-    "url": "https://github.com/m7kra/M7kraBoilerplate/issues"
+    "url": "https://github.com/m7kra/UpNext/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/m7kra/M7kraBoilerplate/git"
+    "url": "git+https://github.com/m7kra/UpNext/git"
   },
   "license": "MIT",
   "author": {
@@ -98,6 +98,8 @@
     "react-beautiful-dnd": "^13.1.1",
     "react-bootstrap": "^2.5.0",
     "react-bootstrap-icons": "^1.9.1",
+    "react-contenteditable": "^3.3.7",
+    "react-datepicker": "^4.10.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "sqlite": "^4.1.2"
@@ -169,7 +171,7 @@
     "webpack-merge": "^5.8.0"
   },
   "build": {
-    "productName": "M7kraBoilerplate",
+    "productName": "UpNext",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
@@ -197,7 +199,7 @@
         "deb",
         "snap"
       ],
-      "category": "Music"
+      "category": "Productivity"
     },
     "snap": {
       "confinement": "classic"
@@ -219,7 +221,7 @@
     "publish": {
       "provider": "github",
       "owner": "m7kra",
-      "repo": "M7kraBoilerplate"
+      "repo": "UpNext"
     }
   },
   "devEngines": {

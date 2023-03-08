@@ -46,12 +46,11 @@ export default class Events {
      * @param {int} listenerID
      */
     static remove(listenerID) {
-        outerloop:
         for (let event in eventListeners) {
             for (let i = 0; i < eventListeners[event].length; i++) {
                 if (eventListeners[event][i].id == listenerID) {
                     eventListeners[event].splice(i, 1);
-                    break outerloop;
+                    return;
                 }
             }
         }

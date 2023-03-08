@@ -1,0 +1,20 @@
+.title {
+    padding: 10px 0px;
+    background-color: transparent;
+    transition: var(--transition);
+    border-radius: var(--border-radius);
+}
+.title h2 {
+    margin: 0px;
+}
+.title:hover {
+    background-color: var(--color-005);
+}
+
+.title:not(.title-edit) > .title-utils {
+    opacity: 0;
+    transition: var(--transition);
+}
+.title:hover > .title-utils {
+    opacity: 1;
+}

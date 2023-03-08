@@ -17,7 +17,7 @@ export default function Header({ view }) {
     if (view == 'main') {
         navigationButtons = [
             { onClick: () => null, content: <Logo size={52}/> },
-            { onClick: () => Events.fire('setView', 'settings'), content: <GearFill />, shortcuts: ['ctrl+s', 's'] }
+            { onClick: () => Events.fire('setView', 'settings'), content: <GearFill />, shortcuts: ['ctrl+s'] }
         ]
     } else {
         navigationButtons = [{ onClick: () => Events.fire('setView', 'main'), content: <ArrowLeftShort size={30} />, shortcuts: ['escape', 'alt+arrowleft'] }]

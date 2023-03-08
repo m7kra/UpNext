@@ -17,6 +17,8 @@ export default class Controller {
         // `Controller` should set up event listeners for `setView`,
         // `saveSettings`, `resetSettings`, `windowButton`, `resetSettings` and
         // `log`. In addition, `log` should also be listened on `ipcRenderer`.
+        Events.on('openFile', (callback) => ipcRenderer.invoke('openFile').then(content => callback(content)));
+        Events.on('saveFile', (content) => ipcRenderer.invoke('saveFile', content));
         Events.on('setView', this.setView.bind(this));
         Events.on('saveSettings', this.saveSettings.bind(this));
         Events.on('resetSettings', this.resetSettings.bind(this));

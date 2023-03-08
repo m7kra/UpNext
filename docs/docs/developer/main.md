@@ -19,6 +19,22 @@ The main script puts together all the logic in the main process. It initializes 
 
 ## `ipcMain` channels
 
+### `openFile`
+
+**Description:** Opens the current todo list file. If none is defined, uses `[userData]/todo.md` as the default file.
+
+**Arguments:** None
+
+**Return value:** The contents of the file.
+
+### `saveFile`
+
+**Description:** Saves the current todo list file. If none is defined, uses `[userData]/todo.md` as the default file.
+
+**Arguments:** `content`
+
+**Return value:** None
+
 ### `windowButton`
 
 **Description:** Resizes and closes the window according to the button pressed.

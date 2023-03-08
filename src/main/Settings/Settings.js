@@ -107,6 +107,21 @@ const defaultSettings = {
         language: 'css',
         value: '',
     },
+    filePath: {
+        name: 'Todo list file path',
+        type: 'filepath',
+        value: ''
+    },
+    dimCompleted: {
+        name: 'Dim completed tasks',
+        type: 'bool',
+        value: true
+    },
+    showCompleted: {
+        name: 'Show completed tasks',
+        type: 'bool',
+        value: true
+    },
     version: app.getVersion(),
     firstTime: true
 }

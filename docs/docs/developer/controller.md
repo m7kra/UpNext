@@ -45,6 +45,14 @@ class Controller {
 
 **Return value:** None
 
+#### `searchFile`
+
+**Description:** Displays a file dialog to search for a task list file.
+
+**Arguments:** None
+
+**Return value:** `path`
+
 #### `setView`
 
 **Description:** Sets the app view to `view`.

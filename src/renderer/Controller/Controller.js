@@ -19,6 +19,7 @@ export default class Controller {
         // `log`. In addition, `log` should also be listened on `ipcRenderer`.
         Events.on('openFile', (callback) => ipcRenderer.invoke('openFile').then(content => callback(content)));
         Events.on('saveFile', (content) => ipcRenderer.invoke('saveFile', content));
+        Events.on('searchFile', (callback) => ipcRenderer.invoke('searchFile').then(file => callback(file)));
         Events.on('setView', this.setView.bind(this));
         Events.on('saveSettings', this.saveSettings.bind(this));
         Events.on('resetSettings', this.resetSettings.bind(this));

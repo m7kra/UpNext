@@ -1,7 +1,9 @@
 import CodeEditor from '@uiw/react-textarea-code-editor';
-
+import Button from '../Button/Button';
+import Events from 'renderer/Events/Events';
 import { useState } from 'react';
 import { useEffect } from 'react';
+
 import './setting.css';
 
 /**
@@ -88,13 +90,26 @@ export default function Setting({setting, modify}) {
     }
 
     // Render a text input
-    else if (setting.type == 'text' || setting.type == 'filepath') {
+    else if (setting.type == 'text') {
         return (
             <>
                 <h3>{setting.name}</h3>
                 <input type='text' className='setting' value={setting.value} onChange={setValue} />
             </>
         )
+    }
+
+    // Render a file dialog
+    else if (setting.type == 'filepath') {
+        return (
+            <>
+                <h3>{setting.name}</h3>
+                <p>{setting.value}</p>
+                <Button type='outline' onClick={() => {
+                    Events.fire('searchFile', (path) => modify({...setting, value: path}));
+                }}>Select File</Button>
+            </>
+        );
     }
 
     // Render a text input

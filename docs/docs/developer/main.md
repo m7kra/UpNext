@@ -35,6 +35,14 @@ The main script puts together all the logic in the main process. It initializes 
 
 **Return value:** None
 
+### `searchFile`
+
+**Description:** Opens a file dialog which allow the user to select a markdown file to be used as the todo list.
+
+**Arguments:** None
+
+**Return value:** `path`
+
 ### `windowButton`
 
 **Description:** Resizes and closes the window according to the button pressed.

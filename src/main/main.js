@@ -31,10 +31,13 @@ app.whenReady().then( async () => {
  * Opens the current todo list file. If none is defined, uses
  * `[userData]/todo.md` as the default file.
  */
-function openFile() {
-    const file = Settings.get().filePath;
+async function openFile() {
+    const settings = await Settings.get();
+    const file = settings.filePath.value;
 
-    if (file) return fs.readFileSync(file).toString();
+    console.log(file);
+
+    if (file && fs.existsSync(file)) return fs.readFileSync(file).toString();
     if (fs.existsSync(defaultFilePath)) return fs.readFileSync(defaultFilePath).toString();
     return '';
 }
@@ -43,11 +46,32 @@ function openFile() {
  * Saves the current todo list file. If none is defined, uses
  * `[userData]/todo.md` as the default file.
  */
-function saveFile(content) {
-    const file = Settings.get().filePath;
+async function saveFile(content) {
+    const settings = await Settings.get();
+    const file = settings.filePath.value;
 
     if (file) fs.writeFile(file, content, () => {});
     else fs.writeFile(defaultFilePath, content, () => {});
+}
+
+/**
+ * Opens a file dialog which allow the user to select a markdown file to be used
+ * as the todo list.
+ */
+async function searchFile() {
+    let file = dialog.showOpenDialogSync(mainWindow, {
+        title: 'Select a file',
+        filters: [
+            { name: 'Markdown', extensions: ['md', 'markdown'] }
+        ],
+        properties: ['openFile'],
+    });
+
+    if (file) return file[0];
+    const settings = await Settings.get();
+    path = settings.filePath.value;
+    if (path) return path;
+    return '';
 }
 
 /**
@@ -90,6 +114,7 @@ async function checkForUpdates() {
 
 ipcMain.handle('openFile', () => openFile());
 ipcMain.handle('saveFile', (e, content) => saveFile(content));
+ipcMain.handle('searchFile', () => searchFile());
 ipcMain.handle('windowButton', (e, button) => windowButton(button));
 ipcMain.handle('getSettings', Settings.get);
 ipcMain.handle('setSettings', (e, settings) => Settings.set(settings));
@@ -105,4 +130,4 @@ process.on('uncaughtException', (err) => {
     };
     dialog.showMessageBoxSync(error);
     app.exit(1);
-});
+})

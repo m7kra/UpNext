@@ -65,36 +65,46 @@ The settings are stored in an object containing `subSettings`. These, in turn, h
 
 ```js
 const defaultSettings = {
+    categories: [
+        'Behavior',
+        'Appearance'
+    ],
     theme: {
         name: 'Theme',
+        category: 'Appearance',
         type: 'select',
         options: ['light', 'dark'],
-        value: 'dark'
+        value: 'light'
     },
     zoomFactor: {
         name: 'Zoom',
+        category: 'Appearance',
         type: 'select',
         options: ['0.7', '0.8', '0.9', '1', '1.2', '1.4', '1.6', '1.8'],
         value: platform() == 'win32'? '0.8' : '1'
     },
     customCSS: {
         name: 'Custom CSS',
+        category: 'Appearance',
         type: 'code',
         language: 'css',
-        value: '',
+        value: ''
     },
     filePath: {
         name: 'Todo list file path',
+        category: 'Behavior',
         type: 'filepath',
         value: ''
     },
     dimCompleted: {
         name: 'Dim completed tasks',
+        category: 'Behavior',
         type: 'bool',
-        value: true
+        value: false
     },
     showCompleted: {
         name: 'Show completed tasks',
+        category: 'Behavior',
         type: 'bool',
         value: true
     },

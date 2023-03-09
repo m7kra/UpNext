@@ -13,44 +13,81 @@ import './settings.css';
  */
 export default function Settings({settings, displayTutorial}) {
 
+    const [category, setCategory] = useState('Behavior');
+    const [categories, setCategories] = useState({});
+    useMemo(() => {
+        const newCategories = {};
+        for (const i in settings.categories) newCategories[settings.categories[i]] = {};
+        for (const setting in settings) {
+            if (setting == 'categories' || setting == 'firstTime' || setting == 'version') continue;
+            const category = settings[setting].category;
+            newCategories[category][setting] = settings[setting];
+        }
+        newCategories['Resetting stuff'] = {};
+        setCategories(newCategories);
+    }, [settings])
+
     function changeSetting(setting, newValue) {
         let newSettings = {...settings};
         newSettings[setting] = newValue;
         Events.fire('saveSettings', newSettings);
     }
 
-    const renderedSettings =  [];
-    for (const setting in settings) {
-        // Custom CSS should not be rendered
-        if (setting == 'firstTime' || setting == 'version') continue;
+    const renderedCategories = [];
+    for (const c in categories) {
+        renderedCategories.push(
+            <>
+                <div className={`category${c == category? ' selected' : ''}`} onClick={() => setCategory(c)} key={renderedCategories.length}>
+                    {c}
+                </div>
+                <div className='spacer-12' />
+            </>
+        );
+    }
 
+    const renderedSettings =  [];
+    if (category != 'Resetting stuff') for (const setting in categories[category]) {
         const modify = (newValue) => changeSetting(setting, newValue);
         renderedSettings.push(
             <div key={renderedSettings.length}>
+                <Setting setting={settings[setting]} modify={modify}/>
                 <div className='spacer-24' />
-                <Setting settingName={setting} setting={settings[setting]} modify={modify} theme={settings.theme.value}/>
+            </div>
+        );
+    }
+    else {
+        renderedSettings.push(
+                <div className='setting'>
+                    <h3>Reset Settings</h3>
+                    <Button onClick={() => Events.fire('resetSettings')} type='outline'>Reset Settings</Button>
+                </div>
+        );
+        renderedSettings.push(
+            <div className='spacer-24' />
+        );
+        renderedSettings.push(
+            <div className='setting'>
+                <h3>Tutorial</h3>
+                <Button onClick={displayTutorial} type='outline'>Tutorial</Button>
             </div>
         );
     }
 
-    let settingButtons = [
-        { onClick: () => Events.fire('resetSettings'), text: 'Reset Settings' },
-        { onClick: () => displayTutorial(), text: 'Tutorial' }
-    ];
-    settingButtons = settingButtons.map((button, index) =>
-        <Button onClick={button.onClick} type='outline' key={index}>{button.text}</Button>    
-    )
-
     return (
         <div id='settings'>
+            <div className='spacer-24' />
             <div className='row justify-content-center'>
                 <div className='col-11'>
-                    <div className='spacer-48' />
                     <h1>Settings:</h1>
-                    <div className='spacer-24' />
+                </div>
+            </div>
+            <div className='spacer-48' />
+            <div className='row justify-content-center'>
+                <div className='col-3'>
+                    {renderedCategories}
+                </div>
+                <div className='col-8'>
                     {renderedSettings}
-                    <div className='spacer-24' />
-                    {settingButtons}
                 </div>
             </div>
         </div>

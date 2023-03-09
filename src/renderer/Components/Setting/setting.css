@@ -1,4 +1,14 @@
-.setting, .setting:focus {
+.setting {
+    padding: 20px;
+    border-radius: var(--border-radius);
+    background-color: var(--color-005);
+    transition: var(--transition);
+}
+.setting:hover {
+    background-color: var(--color-01);
+}
+
+.setting-input, .setting-input:focus {
     height: 40px;
     line-height: 40px;
     outline: none;
@@ -9,10 +19,10 @@
     background-color: var(--bg-color);
     transition: var(--transition);
 }
-.setting {
+.setting-input {
     border: 1px solid var(--color-05);
 }
-.setting:hover, .setting:focus {
+.setting-input:hover, .setting-input:focus {
     border: 1px solid var(--color);
 }
 

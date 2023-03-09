@@ -25,44 +25,12 @@ export default function Setting({setting, modify}) {
         });
 
         return (
-            <>
+            <div className='setting'>
                 <h3>{setting.name}</h3>
-                <select className='setting' onChange={setValue} value={setting.value}>
+                <select className='setting-input' onChange={setValue} value={setting.value}>
                     {options}
                 </select>
-            </>
-        )
-    }
-
-    // Render a number input
-    else if (setting.type == 'number') {
-
-        const [value, setValue] = useState(setting.value);
-
-        // This type requires a different setValue function, because we don't
-        // want a string
-        function storeValue(e) {
-
-            let temp = e.target.value;
-            // Prevent using comma instead of dot
-            temp = temp.replace(',', '.');
-            
-            // If the user is still typing, don't store the new value
-            if (temp[temp.length - 1] == '.' || temp == '' || temp[0] == '-') {
-                setValue(temp);
-                return;
-            }
-
-            setValue(temp);
-            setting.value = parseFloat(temp);
-            modify(setting);
-        }
-
-        return (
-            <>
-                <h3>{setting.name}</h3>
-                <input className='setting' type='value' value={value} onChange={storeValue} />
-            </>
+            </div>
         )
     }
 
@@ -80,35 +48,35 @@ export default function Setting({setting, modify}) {
         )
 
         return (
-            <>
+            <div className='setting'>
                 <h3>{setting.name}</h3>
                 <div className='form-check form-switch'>
                     {swtch}
                 </div>
-            </>
+            </div>
         )
     }
 
     // Render a text input
     else if (setting.type == 'text') {
         return (
-            <>
+            <div className='setting'>
                 <h3>{setting.name}</h3>
-                <input type='text' className='setting' value={setting.value} onChange={setValue} />
-            </>
+                <input type='text' className='setting-input' value={setting.value} onChange={setValue} />
+            </div>
         )
     }
 
     // Render a file dialog
     else if (setting.type == 'filepath') {
         return (
-            <>
+            <div className='setting'>
                 <h3>{setting.name}</h3>
                 <p>{setting.value}</p>
                 <Button type='outline' onClick={() => {
                     Events.fire('searchFile', (path) => modify({...setting, value: path}));
                 }}>Select File</Button>
-            </>
+            </div>
         );
     }
 
@@ -129,12 +97,12 @@ export default function Setting({setting, modify}) {
         }
 
         return (
-            <>
+            <div className='setting'>
                 <h3>{setting.name}</h3>
                 <div data-color-mode={window.settings.theme.value}>
                     <CodeEditor value={setting.value} language={setting.language} onChange={storeValueAfterTimeout} onBlur={setValue} padding={15} />
                 </div>
-            </>
+            </div>
         )
     }
 }

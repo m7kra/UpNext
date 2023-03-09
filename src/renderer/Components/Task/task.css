@@ -6,6 +6,12 @@
 .task.complete {
     background-image: linear-gradient(var(--color-005), var(--color-005)), linear-gradient(rgba(0, 255, 0, 0.05), rgba(0, 255, 0, 0.05));
 }
+.task.medium:not(.complete) {
+    background-image: linear-gradient(var(--color-005), var(--color-005)), linear-gradient(rgba(255, 255, 0, 0.08), rgba(255, 255, 0, 0.08));
+}
+.task.high:not(.complete) {
+    background-image: linear-gradient(var(--color-005), var(--color-005)), linear-gradient(rgba(255, 0, 0, 0.08), rgba(255, 0, 0, 0.08));
+}
 .task-body {
     display: flex;
     flex-direction: column;
@@ -14,6 +20,7 @@
 .task-body > p {
     margin: 0px;
     cursor: text;
+    max-width: max-content;
 }
 .task-body > p:focus {
     outline: none;
@@ -25,7 +32,14 @@
     margin: 5px 0px;
     display: flex;
     align-items: center;
+    transition: all .2s ease;
+}
+.task-deadline .button {
+    opacity: 0;
     transition: var(--transition);
+}
+.task:hover .task-deadline .button {
+    opacity: 1;
 }
 .task-deadline p, .task-deadline svg {
     cursor: pointer;
@@ -36,11 +50,19 @@
     opacity: 0;
     max-height: 0;
     margin: 0;
+    transition: var(--transition);
 }
 .task:hover .task-deadline:not(.exists) {
     opacity: 1;
     margin: 5px 0px;
     max-height: max-content;
+}
+.task-priority {
+    opacity: 0;
+    transition: var(--transition);
+}
+.task:hover .task-priority {
+    opacity: 1;
 }
 .task-content {
     color: var(--color-08);
@@ -49,4 +71,7 @@
 }
 .task-complete {
     padding-top: 35px;
+}
+.react-datepicker-wrapper {
+    max-width: max-content;
 }

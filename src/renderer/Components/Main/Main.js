@@ -19,6 +19,8 @@ export default function Main() {
     }, []);
     const [dragging, setDragging] = useState(false);
 
+    console.log(tokens);
+
     function createTask(index) {
         const newTokens = [...tokens];
         newTokens.splice(index, 0, { type: 'task', content: 'New Task', complete: false});

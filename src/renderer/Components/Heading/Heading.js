@@ -1,12 +1,13 @@
 import Button from '../Button/Button';
 import ContentEditable from 'react-contenteditable';
 import { CheckLg, XLg, Pencil } from 'react-bootstrap-icons';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 import './heading.css';
 
 export default function Heading({heading, modify, remove}) {
     const [value, setValue] = useState(heading.content);
+    useMemo(() => setValue(heading.content), [heading])
 
     function save() {
         modify({...heading, content: value});

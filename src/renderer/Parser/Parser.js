@@ -39,21 +39,26 @@ export default class Parser {
         const match = line.match(/^- \[([ x])\] (.+)$/);
         if (!match) return;
 
-        // We have to do some extra work to extract deadlines
-        const task = match[2];
+        // We have to do some extra work to extract deadlines and priorities
+        let task = match[2];
         const deadline = task.match(/^(\(\d\d?[/-]\d\d?[/-]\d\d(\d\d)?\))/);
+        if (deadline) task = task.replace(deadline[0], '').trim();
+        const priority = task.match(/\[(low|medium|high)\]$/);
+        if (priority) task = task.replace(priority[0], '').trim();
+
         return {
             type: 'task',
-            content: deadline ? task.replace(deadline[0], '').trim() : task,
+            content: task,
             complete: match[1] === 'x',
-            deadline: deadline ? deadline[0].replace(/[\(\)]/g, '') : null
+            deadline: deadline ? deadline[0].replace(/[\(\)]/g, '') : null,
+            priority: priority ? priority[1] : 'low'
         }
     }
 
     static stringifyToken(token) {
         if (token.type == 'title') return `# ${token.content}`;
         if (token.type == 'heading') return `## ${token.content}`;
-        return `- [${token.complete ? 'x' : ' '}] ${token.deadline ? `(${token.deadline}) ` : ''}${token.content}`;
+        return `- [${token.complete ? 'x' : ' '}] ${token.deadline ? `(${token.deadline}) ` : ''}${token.content}${token.priority != 'low' ? ` [${token.priority}]` : ''}`;
     }
 }
 

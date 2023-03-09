@@ -3,9 +3,13 @@
     background-color: transparent;
     transition: var(--transition);
     border-radius: var(--border-radius);
+    height: 80px;
 }
-.title h2 {
+.title h1 {
     margin: 0px;
+}
+.title h1:focus {
+    outline: none;
 }
 .title:hover {
     background-color: var(--color-005);

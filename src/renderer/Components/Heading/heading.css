@@ -6,6 +6,10 @@
 }
 .heading h2 {
     margin: 0px;
+    cursor: text;
+}
+.heading h2:focus {
+    outline: none;
 }
 .heading:hover {
     background-color: var(--color-005);

@@ -130,4 +130,4 @@ process.on('uncaughtException', (err) => {
     };
     dialog.showMessageBoxSync(error);
     app.exit(1);
-})
+});

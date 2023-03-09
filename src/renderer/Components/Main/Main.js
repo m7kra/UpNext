@@ -34,7 +34,6 @@ export default function Main() {
     }
 
     function modify(index, token) {
-        console.log(token);
         const newTokens = [...tokens];
         newTokens[index] = token;
         setTokens(newTokens);
@@ -57,7 +56,6 @@ export default function Main() {
     }
 
     function save(tokens) {
-        console.log(tokens);
         Events.fire('saveFile', Parser.stringify(tokens));
     }
 
@@ -65,10 +63,10 @@ export default function Main() {
     for (const token of tokens) {
         const index = taskList.length / 2;
         let element;
-        if (token.type == 'title') element = <Title title={token} modify={(token) => modify(index, token)} key={taskList.length} />;
+        if (token.type == 'title') taskList.push(<Title title={token} modify={(token) => modify(index, token)} key={taskList.length} />);
         if (token.type == 'heading') element = <Heading heading={token} modify={(token) => modify(index, token)} remove={() => remove(index)} key={taskList.length} />;
         if (token.type == 'task') element = <Task task={token} modify={(token) => modify(index, token)} remove={() => remove(index)} key={taskList.length} />;
-        taskList.push(<Draggable draggableId={taskList.length.toString()} index={index} key={taskList.length} isDragDisabled={token.type == 'title'} >{provided => (
+        if (element) taskList.push(<Draggable draggableId={taskList.length.toString()} index={index} key={taskList.length} isDragDisabled={token.type == 'title'} >{provided => (
             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                 {element}
             </div>

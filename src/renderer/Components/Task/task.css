@@ -17,51 +17,26 @@
     flex-direction: column;
     justify-content: center;
 }
-.task-body > p {
+.task-content {
     margin: 0px;
+    font-size: 20px;
     cursor: text;
     max-width: max-content;
 }
-.task-body > p:focus {
+.task-content:focus {
     outline: none;
 }
 .task-deadline {
     color: var(--color-05);
     font-size: 15px;
     font-weight: bold;
-    margin: 5px 0px;
-    display: flex;
-    align-items: center;
-    transition: all .2s ease;
-}
-.task-deadline .button {
-    opacity: 0;
-    transition: var(--transition);
-}
-.task:hover .task-deadline .button {
-    opacity: 1;
-}
-.task-deadline p, .task-deadline svg {
-    cursor: pointer;
     margin: 0px;
-    margin-top: 5px;
 }
-.task-deadline:not(.exists) {
-    opacity: 0;
-    max-height: 0;
-    margin: 0;
-    transition: var(--transition);
-}
-.task:hover .task-deadline:not(.exists) {
-    opacity: 1;
-    margin: 5px 0px;
-    max-height: max-content;
-}
-.task-priority {
+.task-utils {
     opacity: 0;
     transition: var(--transition);
 }
-.task:hover .task-priority {
+.task:hover .task-utils {
     opacity: 1;
 }
 .task-content {

@@ -51,16 +51,11 @@ export default function Task({task, modify, remove}) {
                     {complete? <CircleFill /> : <Circle />}
                 </Button>
             </div>
-            <div className='task-body col-8'>
-                <div className={`d-flex task-deadline${deadline? ' exists' : ''}`}>
-                    <DatePicker selected={deadline} onChange={saveDeadline} customInput={
-                        deadline? <p className='me-2'>{deadlineString}</p> : <Calendar />
-                    } />
-                    {deadline? <Button onClick={() => saveDeadline(null)} type='nodecor'><X /></Button> : null}
-                </div>
-                <ContentEditable tagName='p' html={value} onChange={e => setValue(e.target.value)} spellCheck={false} />
+            <div className='task-body col-7'>
+                { deadline? <p className='task-deadline'>{deadlineString}</p> : null }
+                <ContentEditable className='task-content' tagName='p' html={value} onChange={e => setValue(e.target.value)} spellCheck={false} />
             </div>
-            <div className='task-priority col-2 d-flex align-items-center justify-content-center'>
+            <div className='task-utils col-2 d-flex align-items-center justify-content-center'>
                 <Select
                     value={priorityOption}
                     onChange={(e) => savePriority(e.value)}
@@ -70,7 +65,13 @@ export default function Task({task, modify, remove}) {
                     isSearchable={false}
                 />
             </div>
-            <div className='d-flex col-1 align-items-center justify-content-center'>
+            <div className='task-utils d-flex col-1 align-items-center justify-content-center'>
+            { deadline? 
+                <Button onClick={() => saveDeadline(null)}><Calendar /></Button> :
+                <DatePicker selected={deadline} onChange={saveDeadline} customInput={<Button><Calendar />d</Button>} />
+            }
+            </div>
+            <div className='task-utils d-flex col-1 align-items-center justify-content-center'>
                 <Button onClick={() => remove()}><XLg /></Button>
             </div>
         </div>

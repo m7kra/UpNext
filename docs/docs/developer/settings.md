@@ -65,10 +65,10 @@ The settings are stored in an object containing `subSettings`. These, in turn, h
 
 ```js
 const defaultSettings = {
-    categories: [
-        'Behavior',
-        'Appearance'
-    ],
+    categories: {
+        type: 'internal',
+        value: ['General', 'Appearance']
+    },
     theme: {
         name: 'Theme',
         category: 'Appearance',
@@ -86,30 +86,38 @@ const defaultSettings = {
     customCSS: {
         name: 'Custom CSS',
         category: 'Appearance',
+        description: 'This allows you to change the app\'s appearence. See the documentation for more information.',
         type: 'code',
         language: 'css',
         value: ''
     },
     filePath: {
         name: 'Todo list file path',
-        category: 'Behavior',
+        category: 'General',
+        description: 'The path to the file where your todo list is stored. If you leave this empty, the app will use a default file.',
         type: 'filepath',
         value: ''
     },
-    dimCompleted: {
-        name: 'Dim completed tasks',
-        category: 'Behavior',
-        type: 'bool',
-        value: false
-    },
     showCompleted: {
         name: 'Show completed tasks',
-        category: 'Behavior',
+        category: 'General',
         type: 'bool',
         value: true
     },
-    version: app.getVersion(),
-    firstTime: true
+    dimCompleted: {
+        name: 'Dim completed tasks',
+        category: 'General',
+        type: 'bool',
+        value: false
+    },
+    version: {
+        type: 'internal',
+        value: app.getVersion()
+    },
+    firstTime: {
+        type: 'internal',
+        value: true
+    }
 }
 ```
 

@@ -22,3 +22,10 @@
 .heading:hover > .heading-utils {
     opacity: 1;
 }
+.heading-utils {
+    opacity: 0;
+    transition: var(--transition);
+}
+.heading:hover .heading-utils {
+    opacity: 1;
+}

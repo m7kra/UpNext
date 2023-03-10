@@ -13,17 +13,17 @@ import './settings.css';
  */
 export default function Settings({settings, displayTutorial}) {
 
-    const [category, setCategory] = useState('Behavior');
+    const [category, setCategory] = useState('General');
     const [categories, setCategories] = useState({});
     useMemo(() => {
         const newCategories = {};
-        for (const i in settings.categories) newCategories[settings.categories[i]] = {};
+        for (const i in settings.categories.value) newCategories[settings.categories.value[i]] = {};
         for (const setting in settings) {
-            if (setting == 'categories' || setting == 'firstTime' || setting == 'version') continue;
+            if (settings[setting].type == 'internal') continue;
             const category = settings[setting].category;
             newCategories[category][setting] = settings[setting];
         }
-        newCategories['Resetting stuff'] = {};
+        newCategories['Actions'] = {};
         setCategories(newCategories);
     }, [settings])
 
@@ -46,7 +46,7 @@ export default function Settings({settings, displayTutorial}) {
     }
 
     const renderedSettings =  [];
-    if (category != 'Resetting stuff') for (const setting in categories[category]) {
+    if (category != 'Actions') for (const setting in categories[category]) {
         const modify = (newValue) => changeSetting(setting, newValue);
         renderedSettings.push(
             <div key={renderedSettings.length}>

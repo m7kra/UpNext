@@ -52,3 +52,7 @@
 .form-check.form-switch .form-check-input:checked {
     background-color: var(--color-02);
 }
+
+.setting-description {
+    color: var(--color-07);
+}

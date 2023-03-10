@@ -13,25 +13,18 @@ import './setting.css';
  */
 export default function Setting({setting, modify}) {
 
-    function setValue(e) {
-        setting.value = e.target.value;
-        modify(setting);
-    }
+    let renderedSetting;
     
     // Render a select element
     if (setting.type == 'select') {
         const options = setting.options.map((option, index) => {
             return <option value={option} key={index}>{option}</option>
         });
-
-        return (
-            <div className='setting'>
-                <h3>{setting.name}</h3>
-                <select className='setting-input' onChange={setValue} value={setting.value}>
-                    {options}
-                </select>
-            </div>
-        )
+        renderedSetting = (
+            <select className='setting-input' onChange={(e) => modify({...setting, value: e.target.value})} value={setting.value}>
+                {options}
+            </select>
+        );
     }
 
     // Render a switch for booleans
@@ -46,37 +39,27 @@ export default function Setting({setting, modify}) {
             setting.value? <input className='form-check-input' type='checkbox' onChange={setValue} checked />
             : <input className='form-check-input' type='checkbox' onChange={setValue} />
         )
-
-        return (
-            <div className='setting'>
-                <h3>{setting.name}</h3>
-                <div className='form-check form-switch'>
-                    {swtch}
-                </div>
+        renderedSetting = (
+            <div className='form-check form-switch'>
+                {swtch}
             </div>
-        )
+        );
     }
 
     // Render a text input
     else if (setting.type == 'text') {
-        return (
-            <div className='setting'>
-                <h3>{setting.name}</h3>
-                <input type='text' className='setting-input' value={setting.value} onChange={setValue} />
-            </div>
-        )
+        renderedSetting = <input type='text' className='setting-input' value={setting.value} onChange={setValue} />;
     }
 
     // Render a file dialog
     else if (setting.type == 'filepath') {
-        return (
-            <div className='setting'>
-                <h3>{setting.name}</h3>
+        renderedSetting = (
+            <>
                 <p>{setting.value}</p>
                 <Button type='outline' onClick={() => {
                     Events.fire('searchFile', (path) => modify({...setting, value: path}));
                 }}>Select File</Button>
-            </div>
+            </>
         );
     }
 
@@ -96,13 +79,20 @@ export default function Setting({setting, modify}) {
             }, 10000);
         }
 
-        return (
-            <div className='setting'>
-                <h3>{setting.name}</h3>
-                <div data-color-mode={window.settings.theme.value}>
-                    <CodeEditor value={setting.value} language={setting.language} onChange={storeValueAfterTimeout} onBlur={setValue} padding={15} />
-                </div>
+        renderedSetting = (
+            <div data-color-mode={window.settings.theme.value}>
+                <CodeEditor value={setting.value} language={setting.language} onChange={storeValueAfterTimeout} onBlur={setValue} padding={15} />
             </div>
-        )
+        );
     }
+
+    return (
+        <div className='setting'>
+            <h2>{setting.name}</h2>
+            <p className='setting-description'>
+                {setting.description? setting.description : null}
+            </p>
+            {renderedSetting}
+        </div>
+    );
 }

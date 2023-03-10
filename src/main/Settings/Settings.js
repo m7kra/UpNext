@@ -25,9 +25,9 @@ export default class Settings {
 
         // If last version is different than the current one, then the tutorial
         // should be shown
-        if (!definedSettings.version || definedSettings.version != defaultSettings.version) {
+        if (!definedSettings.version || definedSettings.version.value != defaultSettings.version.value) {
             definedSettings.version = defaultSettings.version;
-            definedSettings.firstTime = true;
+            definedSettings.firstTime = defaultSettings.firstTime;
         }
         
         // To ensure version compatibility, copy all the missing properties to
@@ -62,7 +62,7 @@ export default class Settings {
     static async reset() {
         // firstTime is never saved as true
         const temp = {...defaultSettings};
-        temp.firstTime = false;
+        temp.firstTime.value = false;
         await settings.set(temp);
         this.setCustomCss('');
     }
@@ -87,28 +87,11 @@ export default class Settings {
         fs.writeFileSync(customCSSPath, customCSS);
     }
 }
+
 const defaultSettings = {
-    categories: [
-        'Behavior',
-        'Appearance'
-    ],
-    filePath: {
-        name: 'Todo list file path',
-        category: 'Behavior',
-        type: 'filepath',
-        value: ''
-    },
-    dimCompleted: {
-        name: 'Dim completed tasks',
-        category: 'Behavior',
-        type: 'bool',
-        value: false
-    },
-    showCompleted: {
-        name: 'Show completed tasks',
-        category: 'Behavior',
-        type: 'bool',
-        value: true
+    categories: {
+        type: 'internal',
+        value: ['General', 'Appearance']
     },
     theme: {
         name: 'Theme',
@@ -127,10 +110,36 @@ const defaultSettings = {
     customCSS: {
         name: 'Custom CSS',
         category: 'Appearance',
+        description: 'This allows you to change the app\'s appearence. See the documentation for more information.',
         type: 'code',
         language: 'css',
         value: ''
     },
-    version: app.getVersion(),
-    firstTime: true
+    filePath: {
+        name: 'Todo list file path',
+        category: 'General',
+        description: 'The path to the file where your todo list is stored. If you leave this empty, the app will use a default file.',
+        type: 'filepath',
+        value: ''
+    },
+    showCompleted: {
+        name: 'Show completed tasks',
+        category: 'General',
+        type: 'bool',
+        value: true
+    },
+    dimCompleted: {
+        name: 'Dim completed tasks',
+        category: 'General',
+        type: 'bool',
+        value: false
+    },
+    version: {
+        type: 'internal',
+        value: app.getVersion()
+    },
+    firstTime: {
+        type: 'internal',
+        value: true
+    }
 }

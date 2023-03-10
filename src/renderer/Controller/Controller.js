@@ -40,7 +40,7 @@ export default class Controller {
         this.implementSettings(settings);
 
         // First time is always saved as false
-        ipcRenderer.invoke('setSettings', {...settings, firstTime: false});
+        ipcRenderer.invoke('setSettings', {...settings, firstTime: {...settings.firstTime, value: false}});
     }
 
     /**

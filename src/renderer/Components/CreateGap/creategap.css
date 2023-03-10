@@ -16,6 +16,16 @@
     opacity: 1;
 }
 
+.task-list > * > .create-gap:last-child {
+    opacity: 1;
+    height: 100px;
+    margin-top: 50px;
+}
+
+.task-list > * > .create-gap:last-child > * {
+    opacity: 1;
+}
+
 .create-gap-buttons {
     border: 1px solid var(--color-05);
     border-radius: var(--border-radius);

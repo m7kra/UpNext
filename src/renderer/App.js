@@ -58,12 +58,12 @@ export default function App() {
             <Header view={view} />
             {view == 'main'?
                 <Main /> :
-                <Settings settings={settings} displayTutorial={() => setSettings({...settings, firstTime: true})} />
+                <Settings settings={settings} displayTutorial={() => setSettings({...settings, firstTime: {...settings.firstTime, value: true}})} />
             }
             <ContextMenu />
             <Logger logs={logs} removeLog={removeLog}/>
             {loadingDiv}
-            {settings.firstTime? <Tutorial dismissTutorial={() => setSettings({...settings, firstTime: false})}/> : null}
+            {settings.firstTime?.value? <Tutorial dismissTutorial={() => setSettings({...settings, firstTime: {...settings.firstTime, value: false}})}/> : null}
             {splashScreenRendered}
         </div>
     );

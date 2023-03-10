@@ -56,21 +56,23 @@ export default function Settings({settings, displayTutorial}) {
         );
     }
     else {
-        renderedSettings.push(
-                <div className='setting'>
-                    <h3>Reset Settings</h3>
-                    <Button onClick={() => Events.fire('resetSettings')} type='outline'>Reset Settings</Button>
-                </div>
-        );
+        renderedSettings.push(<Setting setting={{
+            type: 'custom',
+            name: 'Reset Settings',
+            description: 'This will return all settings back to normal. It will also erase custom CSS.'
+        }}>
+           <Button onClick={() => Events.fire('resetSettings')} type='outline'>Reset Settings</Button> 
+        </Setting>);
         renderedSettings.push(
             <div className='spacer-24' />
         );
-        renderedSettings.push(
-            <div className='setting'>
-                <h3>Tutorial</h3>
-                <Button onClick={displayTutorial} type='outline'>Tutorial</Button>
-            </div>
-        );
+        renderedSettings.push(<Setting setting={{
+            type: 'custom',
+            name: 'Tutorial',
+            description: 'Watch the app\'s tutorial again'
+        }}>
+           <Button onClick={displayTutorial} type='outline'>Tutorial</Button> 
+        </Setting>);
     }
 
     return (

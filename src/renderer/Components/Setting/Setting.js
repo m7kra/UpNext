@@ -11,7 +11,7 @@ import './setting.css';
  * `setting` and `modify`. In order to modify the setting, `modify` should be
  * called. The value to be passed to the function is the entire setting.
  */
-export default function Setting({setting, modify}) {
+export default function Setting({setting, modify, children}) {
 
     let renderedSetting;
     
@@ -85,6 +85,8 @@ export default function Setting({setting, modify}) {
             </div>
         );
     }
+
+    else if (setting.type == 'custom') renderedSetting = children;
 
     return (
         <div className='setting'>

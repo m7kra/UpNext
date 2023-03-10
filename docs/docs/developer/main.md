@@ -39,6 +39,10 @@ The main script puts together all the logic in the main process. It initializes 
 
 **Description:** Opens a file dialog which allow the user to select a markdown file to be used as the todo list.
 
+### `exportList`
+
+**Description:** Exports the current todo list to a specified location.
+
 **Arguments:** None
 
 **Return value:** `path`

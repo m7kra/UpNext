@@ -1,6 +1,7 @@
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import Button from '../Button/Button';
 import Events from 'renderer/Events/Events';
+import Select from '../Select/Select';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -17,13 +18,12 @@ export default function Setting({setting, modify, children}) {
     
     // Render a select element
     if (setting.type == 'select') {
-        const options = setting.options.map((option, index) => {
-            return <option value={option} key={index}>{option}</option>
-        });
         renderedSetting = (
-            <select className='setting-input' onChange={(e) => modify({...setting, value: e.target.value})} value={setting.value}>
-                {options}
-            </select>
+            <Select
+                options={setting.options}
+                value={setting.value}
+                onChange={(v) => modify({...setting, value: v})}
+            />
         );
     }
 

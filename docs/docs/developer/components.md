@@ -130,3 +130,9 @@ modify(setting);
 **Description:** Wrapper component that builds a button around its children. Also sets up a shortcut that for `onClick`, which should be removed when the button removed from the DOM.
 
 **Properties:** `onClick`, `type = box` (`box`, `outline` or `nodecor`) and `shortcuts`.
+
+## `Select`
+
+**Description:** A wrapper for react-select.
+
+**Properties:** `options`, `value`

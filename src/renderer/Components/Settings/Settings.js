@@ -58,19 +58,25 @@ export default function Settings({settings, displayTutorial}) {
     else {
         renderedSettings.push(<Setting setting={{
             type: 'custom',
+            name: 'Export',
+            description: 'Export your todo list to a file. You may then set it to be the default file and synchronize across devices.'
+        }} key={0}>
+           <Button onClick={() => Events.fire('exportFile')} type='outline'>Export</Button> 
+        </Setting>);
+        renderedSettings.push(<div className='spacer-24' key={1} />);
+        renderedSettings.push(<Setting setting={{
+            type: 'custom',
             name: 'Reset Settings',
             description: 'This will return all settings back to normal. It will also erase custom CSS.'
-        }}>
+        }} key={2}>
            <Button onClick={() => Events.fire('resetSettings')} type='outline'>Reset Settings</Button> 
         </Setting>);
-        renderedSettings.push(
-            <div className='spacer-24' />
-        );
+        renderedSettings.push(<div className='spacer-24' key={3} />);
         renderedSettings.push(<Setting setting={{
             type: 'custom',
             name: 'Tutorial',
             description: 'Watch the app\'s tutorial again'
-        }}>
+        }} key={4}>
            <Button onClick={displayTutorial} type='outline'>Tutorial</Button> 
         </Setting>);
     }

@@ -55,10 +55,13 @@ export default function Setting({setting, modify, children}) {
     else if (setting.type == 'filepath') {
         renderedSetting = (
             <>
-                <p>{setting.value}</p>
                 <Button type='outline' onClick={() => {
                     Events.fire('searchFile', (path) => modify({...setting, value: path}));
                 }}>Select File</Button>
+                <Button type='outline' onClick={() => {
+                    Events.fire('showFile', setting.value);
+                }}>Show Current File</Button>
+                <div className='ps-2'><code>{setting.value}</code></div>
             </>
         );
     }

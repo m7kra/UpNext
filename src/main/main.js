@@ -1,6 +1,6 @@
 import createWindow from './utils';
 import Settings from './Settings/Settings';
-import { app, ipcMain, dialog } from 'electron';
+import { app, ipcMain, dialog, shell } from 'electron';
 import { platform } from 'os';
 import versionCheck from 'github-version-checker';
 import fs from 'fs';
@@ -75,6 +75,30 @@ async function searchFile() {
 }
 
 /**
+ * Exports the current todo list to a specified location.
+ */
+async function exportFile() {
+    const content = await openFile();
+    const file = dialog.showSaveDialogSync(mainWindow, {
+        title: 'Export to file',
+        filters: [
+            { name: 'Markdown', extensions: ['md', 'markdown'] }
+        ],
+        properties: ['createDirectory'],
+    });
+    
+    if (file) fs.writeFile(file, content, () => null);
+}
+
+/**
+ * Opens the current todo list file in the default file manager.
+ */
+function showFile(path) {
+    if (path) shell.showItemInFolder(path);
+    else shell.showItemInFolder(defaultFilePath);
+}
+
+/**
  * Resizes and closes the window according to the button pressed.
  * @param {string} button 
  */
@@ -115,6 +139,8 @@ async function checkForUpdates() {
 ipcMain.handle('openFile', () => openFile());
 ipcMain.handle('saveFile', (e, content) => saveFile(content));
 ipcMain.handle('searchFile', () => searchFile());
+ipcMain.handle('exportFile', () => exportFile());
+ipcMain.handle('showFile', (e, path) => showFile(path));
 ipcMain.handle('windowButton', (e, button) => windowButton(button));
 ipcMain.handle('getSettings', Settings.get);
 ipcMain.handle('setSettings', (e, settings) => Settings.set(settings));

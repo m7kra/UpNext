@@ -53,6 +53,18 @@ class Controller {
 
 **Return value:** `path`
 
+#### `exportFile`
+
+**Description:** Exports the current todo list to a specified location.
+
+#### `showFile`
+
+**Description:** Opens the current todo list file in the default file manager.
+
+**Arguments:** None
+
+**Return value:** None
+
 #### `setView`
 
 **Description:** Sets the app view to `view`.

@@ -47,6 +47,10 @@ The main script puts together all the logic in the main process. It initializes 
 
 **Return value:** `path`
 
+### `showFile`
+
+**Description:** Opens the current todo list file in the default file manager.
+
 ### `windowButton`
 
 **Description:** Resizes and closes the window according to the button pressed.

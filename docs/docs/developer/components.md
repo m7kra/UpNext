@@ -69,7 +69,7 @@ Displays a list of `Task`s and `Heading`s and a `Title`, which can be dragged an
 
 ## `Header`
 
-**Description:** Displays the app's header bar, with app navigation utilities and window buttons. Specifically, people should be able to access `settings` if `view == main` and go back to the main view otherwise. The normal three window control buttons must be displayed.
+**Description:** Displays the app's header bar, with app navigation utilities and window buttons. Specifically, people should be able to access `settings`, open a file or export and export the current one if `view == main` and go back to the main view otherwise. The normal three window control buttons must be displayed.
 
 **Properties:** `view`
 

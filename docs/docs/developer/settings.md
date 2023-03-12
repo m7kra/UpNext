@@ -98,12 +98,6 @@ const defaultSettings = {
         type: 'filepath',
         value: ''
     },
-    showCompleted: {
-        name: 'Show completed tasks',
-        category: 'General',
-        type: 'bool',
-        value: true
-    },
     dimCompleted: {
         name: 'Dim completed tasks',
         category: 'General',

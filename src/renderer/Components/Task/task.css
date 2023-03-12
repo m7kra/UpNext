@@ -6,6 +6,9 @@
 .task.complete {
     background-image: linear-gradient(var(--color-005), var(--color-005)), linear-gradient(rgba(0, 255, 0, 0.05), rgba(0, 255, 0, 0.05));
 }
+.dim-completed .task.complete {
+    opacity: 0.7;
+}
 .task.medium:not(.complete) {
     background-image: linear-gradient(var(--color-005), var(--color-005)), linear-gradient(rgba(255, 255, 0, 0.08), rgba(255, 255, 0, 0.08));
 }
@@ -36,7 +39,7 @@
     opacity: 0;
     transition: var(--transition);
 }
-.task:hover .task-utils {
+.task:hover .task-utils, .task:focus-within .task-utils, .task-utils {
     opacity: 1;
 }
 .task-content {
@@ -49,4 +52,27 @@
 }
 .react-datepicker-wrapper {
     max-width: max-content;
+}
+
+.react-datepicker__tab-loop {
+    cursor: default;
+}
+.react-datepicker {
+    opacity: 1;
+    background-color: var(--bg-color);
+    border-color: var(--color-05);
+    border-radius: var(--border-radius);
+}
+.react-datepicker__header {
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+}
+.react-datepicker__triangle::before {
+    display: none;
+}
+.react-datepicker__day {
+    transition: var(--transition);
+}
+.react-datepicker__day:hover {
+    background-color: var(--color-02);
 }

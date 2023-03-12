@@ -1,5 +1,5 @@
 import Button from '../Button/Button';
-import { ArrowLeftShort, GearFill, Square, XLg } from 'react-bootstrap-icons';
+import { ArrowLeftShort, GearFill, Square, XLg, Folder, FileArrowUp } from 'react-bootstrap-icons';
 
 import Events from 'renderer/Events/Events';
 import logo from '../../../../assets/icon.png';
@@ -7,17 +7,29 @@ import './header.css'
 
 /**
  * Displays the app's header bar, with app navigation utilities and window
- * buttons. Specifically, people should be able to access `settings` if `view ==
- * main` and go back to the main view otherwise. The normal three window control
- * buttons must be displayed.
+ * buttons. Specifically, people should be able to access `settings` and open a
+ * file if `view == main` and go back to the main view otherwise. The normal
+ * three window control buttons must be displayed.
  */
 export default function Header({ view }) {
+
+    // Header has a button which is used as a shortcut for a setting change
+    async function searchFile() {
+        Events.fire('searchFile', path => {
+            if (!path) return;
+            const newSettings = {...window.settings};
+            newSettings.filePath.value = path;
+            Events.fire('saveSettings', newSettings);
+        });
+    }
 
     let navigationButtons;
     if (view == 'main') {
         navigationButtons = [
             { onClick: () => null, content: <Logo size={52}/> },
-            { onClick: () => Events.fire('setView', 'settings'), content: <GearFill />, shortcuts: ['ctrl+s'] }
+            { onClick: () => Events.fire('setView', 'settings'), content: <GearFill />, shortcuts: ['ctrl+s'] },
+            { onClick: () => searchFile(), content: <Folder />, shortcuts: ['ctrl+o'] },
+            { onClick: () => Events.fire('exportFile'), content: <FileArrowUp />, shortcuts: ['ctrl+e'] },
         ]
     } else {
         navigationButtons = [{ onClick: () => Events.fire('setView', 'main'), content: <ArrowLeftShort size={30} />, shortcuts: ['escape', 'alt+arrowleft'] }]

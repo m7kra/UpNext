@@ -1,8 +1,8 @@
 import Button from '../Button/Button';
-import { Circle, CircleFill, XLg, X, Pencil, CheckLg, Calendar } from 'react-bootstrap-icons';
+import { Circle, CircleFill, XLg, X, Pencil, CheckLg, CalendarWeek } from 'react-bootstrap-icons';
 import DatePicker from 'react-datepicker';
 import ContentEditable from 'react-contenteditable';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, forwardRef } from 'react';
 import Select from '../Select/Select';
 
 import './task.css';
@@ -51,7 +51,7 @@ export default function Task({task, modify, remove}) {
             </div>
             <div className='task-body col-7'>
                 { deadline? <p className='task-deadline'>{deadlineString}</p> : null }
-                <ContentEditable className='task-content' tagName='p' html={value} onChange={e => setValue(e.target.value)} spellCheck={false} />
+                <ContentEditable className='task-content' tagName='p' html={value? value : task.content} onChange={e => setValue(e.target.value)} spellCheck={false} />
             </div>
             <div className='task-utils col-2 d-flex align-items-center justify-content-center'>
                 <Select
@@ -62,8 +62,8 @@ export default function Task({task, modify, remove}) {
             </div>
             <div className='task-utils d-flex col-1 align-items-center justify-content-center'>
             { deadline? 
-                <Button onClick={() => saveDeadline(null)}><Calendar /></Button> :
-                <DatePicker selected={deadline} onChange={saveDeadline} customInput={<Button><Calendar />d</Button>} />
+                <Button onClick={() => saveDeadline(null)}><CalendarWeek /></Button> :
+                <DatePicker selected={deadline} onChange={saveDeadline} customInput={<Button><CalendarWeek /></Button>} />
             }
             </div>
             <div className='task-utils d-flex col-1 align-items-center justify-content-center'>

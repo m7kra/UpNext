@@ -35,8 +35,6 @@ async function openFile() {
     const settings = await Settings.get();
     const file = settings.filePath.value;
 
-    console.log(file);
-
     if (file && fs.existsSync(file)) return fs.readFileSync(file).toString();
     if (fs.existsSync(defaultFilePath)) return fs.readFileSync(defaultFilePath).toString();
     return '';

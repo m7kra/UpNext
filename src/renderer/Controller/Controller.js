@@ -38,11 +38,11 @@ export default class Controller {
     /**
      * Sets the provided settings and makes the necessary changes to the app.
      */
-    saveSettings(settings) {
-        this.implementSettings(settings);
-
+    async saveSettings(settings) {
         // First time is always saved as false
-        ipcRenderer.invoke('setSettings', {...settings, firstTime: {...settings.firstTime, value: false}});
+        await ipcRenderer.invoke('setSettings', {...settings, firstTime: {...settings.firstTime, value: false}});
+
+        this.implementSettings(settings);
     }
 
     /**

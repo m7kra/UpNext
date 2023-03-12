@@ -28,7 +28,7 @@ export default function Settings({settings, displayTutorial}) {
     }, [settings])
 
     function changeSetting(setting, newValue) {
-        let newSettings = {...settings};
+        const newSettings = {...settings};
         newSettings[setting] = newValue;
         Events.fire('saveSettings', newSettings);
     }
@@ -36,12 +36,12 @@ export default function Settings({settings, displayTutorial}) {
     const renderedCategories = [];
     for (const c in categories) {
         renderedCategories.push(
-            <>
-                <div className={`category${c == category? ' selected' : ''}`} onClick={() => setCategory(c)} key={renderedCategories.length}>
+            <div key={renderedCategories.length}>
+                <div className={`category${c == category? ' selected' : ''}`} onClick={() => setCategory(c)}>
                     {c}
                 </div>
                 <div className='spacer-12' />
-            </>
+            </div>
         );
     }
 

@@ -14,15 +14,18 @@ export default function Heading({heading, modify, remove}) {
     }
 
     function keyDown(e) {
-        if (e.key != 'Enter') return;
-        e.preventDefault();
-        save();
+        if (e.key === 'Enter') {
+            console.log('called');
+            e.preventDefault();
+            e.target.blur();
+            modify({...heading, content: e.target.textContent});
+        }
     }
     
     return (
         <div className='heading heading-edit row' onBlur={save} onKeyDown={keyDown}>
             <div className='col-11 d-flex align-items-center'>
-                <ContentEditable tagName='h2' html={value} onChange={e => setValue(e.target.value)} spellCheck={false} />
+                <ContentEditable tagName='h2' html={value} onChange={e => setValue(e.target.value)} onKeyDown={keyDown} spellCheck={false} />
             </div>
             <div className='heading-utils col-1 d-flex align-items-center justify-content-center'>
                 <Button onClick={remove}><XLg /></Button>

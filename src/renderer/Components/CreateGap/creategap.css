@@ -4,7 +4,7 @@
     overflow: hidden;
     transition-delay: .2s;
 }
-.task-list:not(.dragging) .create-gap:hover {
+.task-list:not(.dragging) .create-gap:hover:not(.used) {
     height: 100px;
 }
 .create-gap > * {

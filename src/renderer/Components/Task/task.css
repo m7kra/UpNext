@@ -39,13 +39,14 @@
     opacity: 0;
     transition: var(--transition);
 }
-.task:hover .task-utils, .task:focus-within .task-utils, .task-utils {
+.task:hover .task-utils, .task:focus-within .task-utils {
     opacity: 1;
 }
 .task-content {
     color: var(--color-08);
     font-size: 20px;
-    margin: 5px 0px;
+    padding: 0px 10px;
+    margin: 0px -10px;
 }
 .task-complete {
     padding-top: 35px;
@@ -66,8 +67,9 @@
 .react-datepicker__header {
     background-color: var(--bg-color);
     border-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius) !important;
 }
-.react-datepicker__triangle::before {
+.react-datepicker__triangle::before, .react-datepicker__triangle::after {
     display: none;
 }
 .react-datepicker__day {

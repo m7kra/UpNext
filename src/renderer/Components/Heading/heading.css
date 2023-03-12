@@ -5,8 +5,9 @@
     border-radius: var(--border-radius);
 }
 .heading h2 {
-    margin: 0px;
+    margin: 0px -10px;
     cursor: text;
+    padding: 0px 10px;
 }
 .heading h2:focus {
     outline: none;

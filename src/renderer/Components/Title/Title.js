@@ -13,15 +13,17 @@ export default function Title({title, modify, remove}) {
     }
 
     function keyDown(e) {
-        if (e.key != 'Enter') return;
-        e.preventDefault();
-        save();
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            e.target.blur();
+            modify({...title, content: e.target.textContent});
+        }
     }
     
     return (
         <div className='title title-edit row' onBlur={save} onKeyDown={keyDown}>
             <div className='col-12 d-flex align-items-center'>
-                <ContentEditable tagName='h1' html={value} onChange={e => setValue(e.target.value)} spellCheck={false} />
+                <ContentEditable tagName='h1' html={value} onChange={e => setValue(e.target.value)} onKeyDown={keyDown} spellCheck={false} />
             </div>
         </div>
     )

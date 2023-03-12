@@ -21,7 +21,7 @@ export default function Main() {
 
     function createTask(index) {
         const newTokens = [...tokens];
-        newTokens.splice(index, 0, { type: 'task', content: 'New Task', complete: false});
+        newTokens.splice(index, 0, { type: 'task', content: '', complete: false, dedline: null, priority: 'low'});
         setTokens(newTokens);
         save(newTokens);
     }
@@ -72,7 +72,7 @@ export default function Main() {
                 {element}
             </div>
         )}</Draggable>);
-        taskList.push(<CreateGap createTask={() => createTask(index + 1)} createHeading={() => createHeading(index + 1)} key={taskList.length} />);
+        taskList.push(<CreateGap createTask={() => createTask(i + 1)} createHeading={() => createHeading(i + 1)} key={taskList.length} />);
     }
 
     const dim = window.settings?.dimCompleted?.value;

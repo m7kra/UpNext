@@ -69,6 +69,8 @@ const defaultTokens = [
     }, {
         type: 'task',
         content: 'First task',
-        complete: false
+        complete: false,
+        deadline: null,
+        priority: 'low'
     }
 ];

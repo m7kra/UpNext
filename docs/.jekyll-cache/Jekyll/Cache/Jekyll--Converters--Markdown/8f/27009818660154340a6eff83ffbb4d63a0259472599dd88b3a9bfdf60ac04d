@@ -1,10 +1,15 @@
-I"q<h1 class="no_toc" id="main">Main</h1>
+I"=<h1 class="no_toc" id="main">Main</h1>
 
 <h2 class="no_toc" id="table-of-contents">Table of contents</h2>
 
 <ul id="markdown-toc">
   <li><a href="#general" id="markdown-toc-general">General</a></li>
   <li><a href="#ipcmain-channels" id="markdown-toc-ipcmain-channels"><code class="language-plaintext highlighter-rouge">ipcMain</code> channels</a>    <ul>
+      <li><a href="#openfile" id="markdown-toc-openfile"><code class="language-plaintext highlighter-rouge">openFile</code></a></li>
+      <li><a href="#savefile" id="markdown-toc-savefile"><code class="language-plaintext highlighter-rouge">saveFile</code></a></li>
+      <li><a href="#searchfile" id="markdown-toc-searchfile"><code class="language-plaintext highlighter-rouge">searchFile</code></a></li>
+      <li><a href="#exportlist" id="markdown-toc-exportlist"><code class="language-plaintext highlighter-rouge">exportList</code></a></li>
+      <li><a href="#showfile" id="markdown-toc-showfile"><code class="language-plaintext highlighter-rouge">showFile</code></a></li>
       <li><a href="#windowbutton" id="markdown-toc-windowbutton"><code class="language-plaintext highlighter-rouge">windowButton</code></a></li>
       <li><a href="#getsettings" id="markdown-toc-getsettings"><code class="language-plaintext highlighter-rouge">getSettings</code></a></li>
       <li><a href="#setsettings" id="markdown-toc-setsettings"><code class="language-plaintext highlighter-rouge">setSettings</code></a></li>
@@ -19,6 +24,38 @@
 <p>The main script puts together all the logic in the main process. It initializes the app and creates a <code class="language-plaintext highlighter-rouge">BrowserWindow</code> (only one instance being allowed). Creates instances of Settings and DB and handles a bunch of channels in <code class="language-plaintext highlighter-rouge">ipcMain</code>:</p>
 
 <h2 id="ipcmain-channels"><code class="language-plaintext highlighter-rouge">ipcMain</code> channels</h2>
+
+<h3 id="openfile"><code class="language-plaintext highlighter-rouge">openFile</code></h3>
+
+<p><strong>Description:</strong> Opens the current todo list file. If none is defined, uses <code class="language-plaintext highlighter-rouge">[userData]/todo.md</code> as the default file.</p>
+
+<p><strong>Arguments:</strong> None</p>
+
+<p><strong>Return value:</strong> The contents of the file.</p>
+
+<h3 id="savefile"><code class="language-plaintext highlighter-rouge">saveFile</code></h3>
+
+<p><strong>Description:</strong> Saves the current todo list file. If none is defined, uses <code class="language-plaintext highlighter-rouge">[userData]/todo.md</code> as the default file.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">content</code></p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h3 id="searchfile"><code class="language-plaintext highlighter-rouge">searchFile</code></h3>
+
+<p><strong>Description:</strong> Opens a file dialog which allow the user to select a markdown file to be used as the todo list.</p>
+
+<h3 id="exportlist"><code class="language-plaintext highlighter-rouge">exportList</code></h3>
+
+<p><strong>Description:</strong> Exports the current todo list to a specified location.</p>
+
+<p><strong>Arguments:</strong> None</p>
+
+<p><strong>Return value:</strong> <code class="language-plaintext highlighter-rouge">path</code></p>
+
+<h3 id="showfile"><code class="language-plaintext highlighter-rouge">showFile</code></h3>
+
+<p><strong>Description:</strong> Opens the current todo list file in the default file manager.</p>
 
 <h3 id="windowbutton"><code class="language-plaintext highlighter-rouge">windowButton</code></h3>
 

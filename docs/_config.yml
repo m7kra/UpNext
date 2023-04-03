@@ -18,11 +18,11 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: M7kraBoilerplate
+title: UpNext
 email: luiswbarbosa@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  A boilerplate for simple apps following the design of Musicly
-baseurl: "/M7kraBoilerplate" # the subpath of your site, e.g. /blog
+  A simple todo list app
+baseurl: "/UpNext" # the subpath of your site, e.g. /blog
 url: "http://m7kra.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  m7kra
 

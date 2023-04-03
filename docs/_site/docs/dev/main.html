@@ -1,21 +1,21 @@
 <html>
 
     <head>
-        <title>Musicly - Main</title>
-        <meta name="description" content="Musicly - Main. Musicly is a simple and elegant open-source music player.">
+        <title>UpNext - Main</title>
+        <meta name="description" content="UpNext - Main. UpNext is a simple and elegant open-source music player.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-        <link rel="stylesheet" href="/Musicly/css/styles.css">
-        <link rel="icon" href="/Musicly/assets/logo.png">
+        <link rel="stylesheet" href="/UpNext/css/styles.css">
+        <link rel="icon" href="/UpNext/assets/logo.png">
     </head>
 
     <body>
         <nav class="navbar navbar-expand-lg bg-light fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand d-flex" href="/Musicly/">
-                    <img src="/Musicly/assets/logo.png" alt="" width="32px" height="32px" class="d-inline-block">
-                    Musicly
+                <a class="navbar-brand d-flex" href="/UpNext/">
+                    <img src="/UpNext/assets/logo.png" alt="" width="32px" height="32px" class="d-inline-block">
+                    UpNext
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -25,18 +25,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
                         <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/m7kra/Musicly/releases">Download</a>
+                            <a class="nav-link" href="https://github.com/m7kra/UpNext/releases">Download</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Musicly/docs/">Documentation</a>
+                            <a class="nav-link" href="/UpNext/docs/">Documentation</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="https://m7kra.github.io/">M7kra</a>
                         </li>
                         <div class="d-flex w-100"></div>
                         <li class="nav-item">
-                            <a class="navbar-brand d-flex align-items-center" href="https://github.com/m7kra/Musicly">
-                                <img src="/Musicly/assets/github.png" alt="" width="30px" height="30px" class="d-inline-block"
+                            <a class="navbar-brand d-flex align-items-center" href="https://github.com/m7kra/UpNext">
+                                <img src="/UpNext/assets/github.png" alt="" width="30px" height="30px" class="d-inline-block"
                                     style="opacity: 0.55;">
                             </a>
                         </li>
@@ -44,8 +44,8 @@
                 </div>
             </div>
         </nav>
-        <link rel="stylesheet" href="/Musicly/css/syntax-highlight.css"/>
-<link rel="stylesheet" href="/Musicly/css/docs.css"/>
+        <link rel="stylesheet" href="/UpNext/css/syntax-highlight.css"/>
+<link rel="stylesheet" href="/UpNext/css/docs.css"/>
 <div class="container-sm">
     <div class="row d-flex justify-content-center">
         <div id="content" class="col-xl-8 col-lg-9 col-sm-10 col-12">
@@ -56,6 +56,11 @@
 <ul id="markdown-toc">
   <li><a href="#general" id="markdown-toc-general">General</a></li>
   <li><a href="#ipcmain-channels" id="markdown-toc-ipcmain-channels"><code class="language-plaintext highlighter-rouge">ipcMain</code> channels</a>    <ul>
+      <li><a href="#openfile" id="markdown-toc-openfile"><code class="language-plaintext highlighter-rouge">openFile</code></a></li>
+      <li><a href="#savefile" id="markdown-toc-savefile"><code class="language-plaintext highlighter-rouge">saveFile</code></a></li>
+      <li><a href="#searchfile" id="markdown-toc-searchfile"><code class="language-plaintext highlighter-rouge">searchFile</code></a></li>
+      <li><a href="#exportlist" id="markdown-toc-exportlist"><code class="language-plaintext highlighter-rouge">exportList</code></a></li>
+      <li><a href="#showfile" id="markdown-toc-showfile"><code class="language-plaintext highlighter-rouge">showFile</code></a></li>
       <li><a href="#windowbutton" id="markdown-toc-windowbutton"><code class="language-plaintext highlighter-rouge">windowButton</code></a></li>
       <li><a href="#getsettings" id="markdown-toc-getsettings"><code class="language-plaintext highlighter-rouge">getSettings</code></a></li>
       <li><a href="#setsettings" id="markdown-toc-setsettings"><code class="language-plaintext highlighter-rouge">setSettings</code></a></li>
@@ -70,6 +75,38 @@
 <p>The main script puts together all the logic in the main process. It initializes the app and creates a <code class="language-plaintext highlighter-rouge">BrowserWindow</code> (only one instance being allowed). Creates instances of Settings and DB and handles a bunch of channels in <code class="language-plaintext highlighter-rouge">ipcMain</code>:</p>
 
 <h2 id="ipcmain-channels"><code class="language-plaintext highlighter-rouge">ipcMain</code> channels</h2>
+
+<h3 id="openfile"><code class="language-plaintext highlighter-rouge">openFile</code></h3>
+
+<p><strong>Description:</strong> Opens the current todo list file. If none is defined, uses <code class="language-plaintext highlighter-rouge">[userData]/todo.md</code> as the default file.</p>
+
+<p><strong>Arguments:</strong> None</p>
+
+<p><strong>Return value:</strong> The contents of the file.</p>
+
+<h3 id="savefile"><code class="language-plaintext highlighter-rouge">saveFile</code></h3>
+
+<p><strong>Description:</strong> Saves the current todo list file. If none is defined, uses <code class="language-plaintext highlighter-rouge">[userData]/todo.md</code> as the default file.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">content</code></p>
+
+<p><strong>Return value:</strong> None</p>
+
+<h3 id="searchfile"><code class="language-plaintext highlighter-rouge">searchFile</code></h3>
+
+<p><strong>Description:</strong> Opens a file dialog which allow the user to select a markdown file to be used as the todo list.</p>
+
+<h3 id="exportlist"><code class="language-plaintext highlighter-rouge">exportList</code></h3>
+
+<p><strong>Description:</strong> Exports the current todo list to a specified location.</p>
+
+<p><strong>Arguments:</strong> None</p>
+
+<p><strong>Return value:</strong> <code class="language-plaintext highlighter-rouge">path</code></p>
+
+<h3 id="showfile"><code class="language-plaintext highlighter-rouge">showFile</code></h3>
+
+<p><strong>Description:</strong> Opens the current todo list file in the default file manager.</p>
 
 <h3 id="windowbutton"><code class="language-plaintext highlighter-rouge">windowButton</code></h3>
 

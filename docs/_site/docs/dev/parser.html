@@ -1,0 +1,110 @@
+<html>
+
+    <head>
+        <title>UpNext - Parser</title>
+        <meta name="description" content="UpNext - Parser. UpNext is a simple and elegant open-source music player.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <link rel="stylesheet" href="/UpNext/css/styles.css">
+        <link rel="icon" href="/UpNext/assets/logo.png">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg bg-light fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex" href="/UpNext/">
+                    <img src="/UpNext/assets/logo.png" alt="" width="32px" height="32px" class="d-inline-block">
+                    UpNext
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/m7kra/UpNext/releases">Download</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/UpNext/docs/">Documentation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://m7kra.github.io/">M7kra</a>
+                        </li>
+                        <div class="d-flex w-100"></div>
+                        <li class="nav-item">
+                            <a class="navbar-brand d-flex align-items-center" href="https://github.com/m7kra/UpNext">
+                                <img src="/UpNext/assets/github.png" alt="" width="30px" height="30px" class="d-inline-block"
+                                    style="opacity: 0.55;">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <link rel="stylesheet" href="/UpNext/css/syntax-highlight.css"/>
+<link rel="stylesheet" href="/UpNext/css/docs.css"/>
+<div class="container-sm">
+    <div class="row d-flex justify-content-center">
+        <div id="content" class="col-xl-8 col-lg-9 col-sm-10 col-12">
+            <h1 class="no_toc" id="parser">Parser</h1>
+
+<h2 class="no_toc" id="table-of-contents">Table of Contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#parser-1" id="markdown-toc-parser-1">Parser</a>    <ul>
+      <li><a href="#parse" id="markdown-toc-parse"><code class="language-plaintext highlighter-rouge">parse</code></a></li>
+      <li><a href="#stringify" id="markdown-toc-stringify"><code class="language-plaintext highlighter-rouge">stringify</code></a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="parser-1">Parser</h2>
+
+<p>The parser is a class that helps to convert text into a list of tasks and vice versa. It therefore has two main methods: <code class="language-plaintext highlighter-rouge">parse</code> and <code class="language-plaintext highlighter-rouge">stringify</code>:</p>
+
+<h3 id="parse"><code class="language-plaintext highlighter-rouge">parse</code></h3>
+
+<p><strong>Description:</strong> Parses a string into a list of tasks. It also handles hedings and titles (the first heading in the document is used as a title). Headings are recognized because they have one to six <code class="language-plaintext highlighter-rouge">#</code> leading the text. Tasks have the following structure: <code class="language-plaintext highlighter-rouge">- [x] Text</code>. Notice that the <code class="language-plaintext highlighter-rouge">x</code> is optional, meaning that the task is complete. Tasks can also be preceded or ended by a date in between parenthesis and followed by a priority in angle breackets (<code class="language-plaintext highlighter-rouge">low</code> is the default assumed), i.e., <code class="language-plaintext highlighter-rouge">- [x] (22/07/2024) Task [medium]</code> or <code class="language-plaintext highlighter-rouge">- [x] Task (22/07/2024) [high]</code>.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">text</code>: The text to be parsed.</p>
+
+<p><strong>Return value:</strong> <code class="language-plaintext highlighter-rouge">tokens</code>: An array of tokens. This array may look like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">title</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">content</span><span class="p">:</span> <span class="dl">'</span><span class="s1">UpNext</span><span class="dl">'</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">heading</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">content</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Urgent</span><span class="dl">'</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">task</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">complete</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">content</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Task 1</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">deadline</span><span class="p">:</span> <span class="dl">'</span><span class="s1">22/07/2024</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">priority</span><span class="p">:</span> <span class="dl">'</span><span class="s1">high</span><span class="dl">'</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="stringify"><code class="language-plaintext highlighter-rouge">stringify</code></h3>
+
+<p><strong>Description:</strong> Converts a list of tokens into a markdown string.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">tokens</code>: An array of tokens.</p>
+
+<p><strong>Return value:</strong> <code class="language-plaintext highlighter-rouge">text</code>: The markdown string.</p>
+
+        </div>
+    </div>
+</div>
+<div class="spacer-200"></div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"></script>
+    </body>
+
+</html>

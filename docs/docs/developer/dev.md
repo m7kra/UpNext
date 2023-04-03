@@ -30,7 +30,7 @@ M7kra
 In order to download the source code, run the following command:
 
 ```bash
-git clone https://github.com/m7kra/Musicly.git
+git clone https://github.com/m7kra/UpNext.git
 npm install
 ```
 
@@ -46,7 +46,7 @@ Part of the program that interacts with the file system (creating a database, st
 
 Two helper modules are defined:
 
-- [`Settings`](/Musicly/docs/dev/settings): Gets and sets the user settings.
+- [`Settings`](/UpNext/docs/dev/settings): Gets and sets the user settings.
 
 - `utilities`: Provides utilities for window management.
 

@@ -1,0 +1,49 @@
+I"…<h1 class="no_toc" id="parser">Parser</h1>
+
+<h2 class="no_toc" id="table-of-contents">Table of Contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#parser-1" id="markdown-toc-parser-1">Parser</a>    <ul>
+      <li><a href="#parse" id="markdown-toc-parse"><code class="language-plaintext highlighter-rouge">parse</code></a></li>
+      <li><a href="#stringify" id="markdown-toc-stringify"><code class="language-plaintext highlighter-rouge">stringify</code></a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="parser-1">Parser</h2>
+
+<p>The parser is a class that helps to convert text into a list of tasks and vice versa. It therefore has two main methods: <code class="language-plaintext highlighter-rouge">parse</code> and <code class="language-plaintext highlighter-rouge">stringify</code>:</p>
+
+<h3 id="parse"><code class="language-plaintext highlighter-rouge">parse</code></h3>
+
+<p><strong>Description:</strong> Parses a string into a list of tasks. It also handles hedings and titles (the first heading in the document is used as a title). Headings are recognized because they have one to six <code class="language-plaintext highlighter-rouge">#</code> leading the text. Tasks have the following structure: <code class="language-plaintext highlighter-rouge">- [x] Text</code>. Notice that the <code class="language-plaintext highlighter-rouge">x</code> is optional, meaning that the task is complete. Tasks can also be preceded or ended by a date in between parenthesis and followed by a priority in angle breackets (<code class="language-plaintext highlighter-rouge">low</code> is the default assumed), i.e., <code class="language-plaintext highlighter-rouge">- [x] (22/07/2024) Task [medium]</code> or <code class="language-plaintext highlighter-rouge">- [x] Task (22/07/2024) [high]</code>.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">text</code>: The text to be parsed.</p>
+
+<p><strong>Return value:</strong> <code class="language-plaintext highlighter-rouge">tokens</code>: An array of tokens. This array may look like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">title</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">content</span><span class="p">:</span> <span class="dl">'</span><span class="s1">UpNext</span><span class="dl">'</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">heading</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">content</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Urgent</span><span class="dl">'</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">task</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">complete</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">content</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Task 1</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">deadline</span><span class="p">:</span> <span class="dl">'</span><span class="s1">22/07/2024</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">priority</span><span class="p">:</span> <span class="dl">'</span><span class="s1">high</span><span class="dl">'</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="stringify"><code class="language-plaintext highlighter-rouge">stringify</code></h3>
+
+<p><strong>Description:</strong> Converts a list of tokens into a markdown string.</p>
+
+<p><strong>Arguments:</strong> <code class="language-plaintext highlighter-rouge">tokens</code>: An array of tokens.</p>
+
+<p><strong>Return value:</strong> <code class="language-plaintext highlighter-rouge">text</code>: The markdown string.</p>
+:ET
